@@ -1,4 +1,28 @@
 .mainNavigation {
     display: flex;
-    flex-direction: row;
+
+    .navList {
+        display: flex;
+        align-items: center;
+    }
+    .nav-item {
+        font-size: 140%;
+        font-weight: 400;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: black;
+        
+        border-bottom: transparent solid 1px;
+        transition: color 0.4s, border-bottom 0.4s;
+
+        &:hover,
+        &:active {
+            color: #6D956F;
+            border-bottom: #6D956F solid 1px;
+        }
+    }
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
 }
