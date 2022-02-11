@@ -1,0 +1,22 @@
+.messageContainer {
+    text-align: center;
+    justify-content: center;
+
+
+    &.display {
+        display: flex;
+    }
+
+    &.noDisplay {
+        display: none;
+    }
+
+    &.error {
+        color: rgb(197, 81, 81);
+        opacity: 0.7;
+    }
+
+    &.noError {
+        color: rgb(89, 148, 89);
+    }
+}
