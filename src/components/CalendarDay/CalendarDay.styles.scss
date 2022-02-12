@@ -1,0 +1,39 @@
+.calendarDayContainer {
+    width: 14%;
+    display: flex;
+    margin: 1% 0;
+    justify-content: center;
+
+
+
+    .calendarDay {
+        width: 4vw;
+        height: 4vw;
+        border-radius: 50%;
+        margin: 1% 1%;
+        display: block;
+        border: none;
+        line-height: 4vw;
+        color: white;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .isDisabled {
+        opacity: 0.4;
+        background-color: rgb(94, 94, 94);
+        cursor: default !important;
+    }
+    
+    .notDisabled {
+        opacity: 1;
+    }
+    
+    .hasAvailable {
+        cursor: pointer;
+        background-color: rgb(136, 185, 138);
+    }
+    
+    .notAvailable {
+        background-color: rgb(180, 98, 98);
+    }
+}
