@@ -2,23 +2,25 @@ import React from "react";
 import Calendar from "../../components/Calendar/Calendar.component";
 import './BookingPage.styles.scss';
 import { format } from 'date-fns';
+import { ServiceList } from "./ServiceList";
 
 import { connect } from "react-redux";
+import CustomDropDown from "../../components/CustomDropDown/CustomDropDown.component";
 
 class BookingPage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
 
         // Redux Test
-        const {selectedDay, selectedService} = this.props;
-        let test5 = selectedDay;
-        let test6 = selectedService
-        console.log(test5);
+        const { selectedDay, didSelectDay } = this.props;
+        let reduxOne = selectedDay;
+        let reduxTwo = didSelectDay
+        console.log(reduxOne);
+        console.log(reduxTwo);
 
         const date = new Date();
         const month = format(new Date(date), "MMMM");
+        // Double check to make sure services are up to date!!!!
+        
         return (
             <div className="bookingContainer container-fluid">
                 <div className="row">
@@ -29,6 +31,9 @@ class BookingPage extends React.Component {
                 <div className="row">
                     <div className="col-7 d-flex justify-content-center my-4">
                         <Calendar date={date} month={month} />
+                    </div>
+                    <div className="col-5 d-flex justify-content-center mt-4 mb-auto">
+                        <CustomDropDown serviceList={ServiceList} />
                     </div>
                 </div>
                 <div className="row">
@@ -43,6 +48,7 @@ class BookingPage extends React.Component {
 
 const mapStateToProps = (state) => ({
     selectedDay: state.booking.selectedDay,
+    didSelectDay: state.booking.didSelectDay,
     selectedService: state.booking.selectedService
 });
 

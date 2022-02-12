@@ -7,7 +7,7 @@ import nextArrow from '../../assets/nextArrow.svg';
 
 // Redux
 import { connect } from "react-redux";
-import {setSelectedDate} from '../../redux/booking-info/booking.actions';
+import {setSelectedDate, setDidSelectDay} from '../../redux/booking-info/booking.actions';
 
 
 
@@ -110,6 +110,16 @@ class Calendar extends React.Component {
             });
         }
 
+        const selectedDayClick = (date, isDisabled) => {
+            if(!isDisabled) {
+                this.props.setSelectedDate(date);
+                this.props.setDidSelectDay(true);
+            }else{
+                console.log('Pick a valid date');
+            }
+            
+        }
+
         // Creating Calendar Days Array
         const date = this.state.displayedDate;
         date.setDate(1);
@@ -127,7 +137,8 @@ class Calendar extends React.Component {
                 dayNumber: (prevLastDay - x + 1),
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + (format(subMonths(new Date(this.state.displayedDate), 1), "MM")) + (prevLastDay - x + 1),
                 isDisabled: true,
-                hasAvailable: true //Change this eventually based on Calendar. Might look at redoing this part
+                hasAvailable: true, //Change this eventually based on Calendar. Might look at redoing this part
+                handleClick: selectedDayClick
             });
         }
         // Selected Month Days
@@ -136,7 +147,8 @@ class Calendar extends React.Component {
                 dayNumber: i,
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + (format(new Date(this.state.displayedDate), "MM")) + (i),
                 isDisabled: false,
-                hasAvailable: true
+                hasAvailable: true,
+                handleClick: selectedDayClick
             });
         }
 
@@ -146,18 +158,10 @@ class Calendar extends React.Component {
                 dayNumber: j,
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + (format(addMonths(new Date(this.state.displayedDate), 1), "MM")) + (j),
                 isDisabled: true,
-                hasAvailable: true
+                hasAvailable: true,
+                handleClick: selectedDayClick
             });
         }
-
-
-
-        // REDUX TESTING
-        const setSelectedDateTest = () => {
-            this.props.setSelectedDate('5');
-            // console.log(this.props.)
-        }
-
        
         return (
             <div className="calendarContainer container-fluid">
@@ -206,13 +210,9 @@ class Calendar extends React.Component {
                             dayNumber={day.dayNumber}
                             isDisabled={day.isDisabled}
                             hasAvailable={day.hasAvailable}
+                            handleClick={day.handleClick}
                             />
                         ))}
-                    </div>
-                </div>
-                <div className="row mt-5">
-                    <div className="col-4">
-                        <button onClick={setSelectedDateTest}>Test Update Button</button>
                     </div>
                 </div>
             </div>
@@ -221,7 +221,8 @@ class Calendar extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    setSelectedDate: selectedDate => dispatch(setSelectedDate(selectedDate))
+    setSelectedDate: selectedDate => dispatch(setSelectedDate(selectedDate)),
+    setDidSelectDay: didSelectDay => dispatch(setDidSelectDay(didSelectDay))
 });
 
 export default connect(null, mapDispatchToProps)(Calendar); //instead of null you can pass the argument that receives data.

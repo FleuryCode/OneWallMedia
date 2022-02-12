@@ -20,8 +20,8 @@ const Navigation = () => {
                     </div>
                     <div className="col-5 navList justify-content-start">
                         <Link className="nav-item me-5" to={'/#'} >Portfolio</Link>
-                        <Link className="nav-item me-5" to={'/#'} >Booking</Link>
-                        <Link className="nav-item me-5" to={'/#'} >Contact</Link>
+                        <Link className="nav-item me-5" to={'/booking'} >Booking</Link>
+                        <Link className="nav-item me-5" to={'/contact'} >Contact</Link>
                     </div>
                 </div>
             </div>

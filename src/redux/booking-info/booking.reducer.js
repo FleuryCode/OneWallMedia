@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
-    selectedDay: 'testDayOne',
-    selectedService: 'testServiceOne',
+    selectedDay: '',
+    didSelectDay: false,
+    selectedService: '',
     selectedTime: '',
     name: '',
     email: '',
@@ -14,6 +15,11 @@ const bookingReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 selectedDay: action.payload
             }
+        case 'SET_DID_SELECT_DAY':
+            return {
+                ...state,
+                didSelectDay: action.payload
+            }    
         default:
             return state;
     }
