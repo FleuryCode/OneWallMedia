@@ -20,7 +20,7 @@ class BookingPage extends React.Component {
         const date = new Date();
         const month = format(new Date(date), "MMMM");
         // Double check to make sure services are up to date!!!!
-        
+
         return (
             <div className="bookingContainer container-fluid">
                 <div className="row">
@@ -28,12 +28,14 @@ class BookingPage extends React.Component {
                         <h1>Schedule an Appointment</h1>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-7 d-flex justify-content-center my-4">
+                <div className="row d-flex justify-content-center">
+                    <div className="col-10 col-md-7 d-flex justify-content-center my-4 px-5 px-md-4">
                         <Calendar date={date} month={month} />
                     </div>
-                    <div className="col-5 d-flex justify-content-center mt-4 mb-auto">
-                        <CustomDropDown serviceList={ServiceList} />
+                    <div className="col-12 col-md-5 d-flex justify-content-center mt-4 mb-auto">
+                        <div className={`${didSelectDay ? 'display' : 'noDisplay'}`}>
+                            <CustomDropDown serviceList={ServiceList} />
+                        </div>
                     </div>
                 </div>
                 <div className="row">

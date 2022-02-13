@@ -1,7 +1,12 @@
+import { BookingTypes } from "./booking.types";
+
 const INITIAL_STATE = {
     selectedDay: '',
     didSelectDay: false,
-    selectedService: '',
+    selectedService: 'Service',
+    didSelectService: false,
+
+
     selectedTime: '',
     name: '',
     email: '',
@@ -10,16 +15,26 @@ const INITIAL_STATE = {
 
 const bookingReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
-        case 'SET_SELECTED_DATE':
+        case BookingTypes.SET_SELECTED_DATE:
             return {
                 ...state,
                 selectedDay: action.payload
             }
-        case 'SET_DID_SELECT_DAY':
+        case BookingTypes.SET_DID_SELECT_DAY:
             return {
                 ...state,
                 didSelectDay: action.payload
-            }    
+            }   
+        case BookingTypes.SET_SELECTED_SERVICE:
+            return {
+                ...state,
+                selectedService: action.payload
+            }
+        case BookingTypes.SET_DID_SELECT_SERVICE:
+            return {
+                ...state,
+                didSelectService: action.payload
+            }
         default:
             return state;
     }
