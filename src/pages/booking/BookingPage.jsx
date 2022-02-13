@@ -1,11 +1,12 @@
 import React from "react";
 import Calendar from "../../components/Calendar/Calendar.component";
 import './BookingPage.styles.scss';
-import { format } from 'date-fns';
+import { format, toDate } from 'date-fns';
 import { ServiceList } from "./ServiceList";
 
 import { connect } from "react-redux";
 import CustomDropDown from "../../components/CustomDropDown/CustomDropDown.component";
+import TimeSelector from "../../components/TimeSelector/TimeSelector.component";
 
 class BookingPage extends React.Component {
     render() {
@@ -20,6 +21,7 @@ class BookingPage extends React.Component {
         const date = new Date();
         const month = format(new Date(date), "MMMM");
         // Double check to make sure services are up to date!!!!
+        
 
         return (
             <div className="bookingContainer container-fluid">
@@ -29,12 +31,14 @@ class BookingPage extends React.Component {
                     </div>
                 </div>
                 <div className="row d-flex justify-content-center">
-                    <div className="col-10 col-md-7 d-flex justify-content-center my-4 px-5 px-md-4">
+                    <div className="col-11 col-md-7 d-flex justify-content-center my-4 px-5 px-md-4">
                         <Calendar date={date} month={month} />
                     </div>
                     <div className="col-12 col-md-5 d-flex justify-content-center mt-4 mb-auto">
-                        <div className={`${didSelectDay ? 'display' : 'noDisplay'}`}>
+                        <div className={`${didSelectDay ? 'display' : 'noDisplay'} mt-0 mt-md-5`}>
+                            <h5 className="displayed-date">{format(new Date(toDate(new Date(selectedDay))), "PPP")}</h5>
                             <CustomDropDown serviceList={ServiceList} />
+                            <TimeSelector/>
                         </div>
                     </div>
                 </div>

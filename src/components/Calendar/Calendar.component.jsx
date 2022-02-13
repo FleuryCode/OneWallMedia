@@ -135,7 +135,7 @@ class Calendar extends React.Component {
         for (let x = firstDayIndex; x > 0; x--) {
             days.push({
                 dayNumber: (prevLastDay - x + 1),
-                id: (format(new Date(this.state.displayedDate), "yyyy")) + (format(subMonths(new Date(this.state.displayedDate), 1), "MM")) + (prevLastDay - x + 1),
+                id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(subMonths(new Date(this.state.displayedDate), 1), "MM")) + "-" + (prevLastDay - x + 1),
                 isDisabled: true,
                 hasAvailable: true, //Change this eventually based on Calendar. Might look at redoing this part
                 handleClick: selectedDayClick
@@ -145,7 +145,7 @@ class Calendar extends React.Component {
         for (let i = 1; i <= lastDay; i++) {
             days.push({
                 dayNumber: i,
-                id: (format(new Date(this.state.displayedDate), "yyyy")) + (format(new Date(this.state.displayedDate), "MM")) + (i),
+                id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(new Date(this.state.displayedDate), "MM")) + "-" + (i),
                 isDisabled: false,
                 hasAvailable: true,
                 handleClick: selectedDayClick
@@ -156,7 +156,7 @@ class Calendar extends React.Component {
         for (let j = 1; j <= nextDays; j++) {
             days.push({
                 dayNumber: j,
-                id: (format(new Date(this.state.displayedDate), "yyyy")) + (format(addMonths(new Date(this.state.displayedDate), 1), "MM")) + (j),
+                id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(addMonths(new Date(this.state.displayedDate), 1), "MM")) + "-" + (j),
                 isDisabled: true,
                 hasAvailable: true,
                 handleClick: selectedDayClick

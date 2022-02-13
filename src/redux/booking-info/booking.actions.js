@@ -15,6 +15,11 @@ export const setSelectedService = (selectedService) => ({
     payload: selectedService
 });
 
+export const setServiceDuration = (serviceDuration) => ({
+    type: BookingTypes.SET_SERVICE_DURATION,
+    payload: serviceDuration
+})
+
 export const setDidSelectService = (didSelectService) => ({
     type: BookingTypes.SET_DID_SELECT_SERVICE,
     payload: didSelectService

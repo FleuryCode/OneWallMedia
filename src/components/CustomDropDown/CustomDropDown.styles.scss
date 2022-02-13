@@ -35,9 +35,9 @@
         .item-container {
             background-color: transparent;
             transition: background-color 0.4s;
+            align-self: flex-start;
             display: flex;
-            justify-content: flex-start;
-            align-items: center;
+            width: 100%;
             padding: 3%;
             border-radius: 8px;
             cursor: pointer;

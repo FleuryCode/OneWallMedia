@@ -1,9 +1,10 @@
 import { BookingTypes } from "./booking.types";
 
 const INITIAL_STATE = {
-    selectedDay: '',
+    selectedDay: '2020-03-16',
     didSelectDay: false,
     selectedService: 'Service',
+    serviceDuration: '',
     didSelectService: false,
 
 
@@ -30,6 +31,11 @@ const bookingReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 selectedService: action.payload
             }
+        case BookingTypes.SET_SERVICE_DURATION:
+        return {
+            ...state,
+            serviceDuration: action.payload
+        }
         case BookingTypes.SET_DID_SELECT_SERVICE:
             return {
                 ...state,
