@@ -7,12 +7,14 @@ import { ServiceList } from "./ServiceList";
 import { connect } from "react-redux";
 import CustomDropDown from "../../components/CustomDropDown/CustomDropDown.component";
 import TimeSelector from "../../components/TimeSelector/TimeSelector.component";
+import CustomInput from '../../components/CustomInput/CustomInput.component';
+import { setName, setEmail, setPhone } from '../../redux/booking-info/booking.actions';
 
 class BookingPage extends React.Component {
     render() {
 
         // Redux Test
-        const { selectedDay, didSelectDay } = this.props;
+        const { selectedDay, didSelectDay, didSelectTime, name, email, phone, setName, setEmail, setPhone } = this.props;
         let reduxOne = selectedDay;
         let reduxTwo = didSelectDay
         console.log(reduxOne);
@@ -21,7 +23,17 @@ class BookingPage extends React.Component {
         const date = new Date();
         const month = format(new Date(date), "MMMM");
         // Double check to make sure services are up to date!!!!
-        
+
+        const handleInputChange = (event) => {
+            const { value, name } = event.target;
+            if (name === 'name') {
+                setName(value);
+            } else if (name === 'email') {
+                setEmail(value);
+            } else if (name === 'phone') {
+                setPhone(value);
+            }
+        }
 
         return (
             <div className="bookingContainer container-fluid">
@@ -38,7 +50,39 @@ class BookingPage extends React.Component {
                         <div className={`${didSelectDay ? 'display' : 'noDisplay'} mt-0 mt-md-5`}>
                             <h5 className="displayed-date">{format(new Date(toDate(new Date(selectedDay))), "PPP")}</h5>
                             <CustomDropDown serviceList={ServiceList} />
-                            <TimeSelector/>
+                            <TimeSelector />
+                            <div className={`${didSelectTime ? 'display' : 'noDisplay'} inputs-container mt-4`}>
+                                <div className="input-fields">
+                                    <CustomInput
+                                        handleChange={handleInputChange}
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        placeholder="NAME"
+                                        value={name}
+                                    />
+                                </div>
+                                <div className="input-fields mt-4">
+                                    <CustomInput
+                                        handleChange={handleInputChange}
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="EMAIL"
+                                        value={email}
+                                    />
+                                </div>
+                                <div className="input-fields mt-4">
+                                    <CustomInput
+                                        handleChange={handleInputChange}
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        placeholder="PHONE"
+                                        value={phone}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,7 +99,17 @@ class BookingPage extends React.Component {
 const mapStateToProps = (state) => ({
     selectedDay: state.booking.selectedDay,
     didSelectDay: state.booking.didSelectDay,
-    selectedService: state.booking.selectedService
+    selectedService: state.booking.selectedService,
+    didSelectTime: state.booking.didSelectTime,
+    name: state.booking.name,
+    email: state.booking.email,
+    phone: state.booking.phone
 });
 
-export default connect(mapStateToProps)(BookingPage);
+const mapDispatchToProps = (dispatch) => ({
+    setName: name => dispatch(setName(name)),
+    setEmail: email => dispatch(setEmail(email)),
+    setPhone: phone => dispatch(setPhone(phone))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookingPage);

@@ -25,3 +25,28 @@ export const setDidSelectService = (didSelectService) => ({
     payload: didSelectService
 });
 
+export const setSelectedTime = (selectedTime) => ({
+    type: BookingTypes.SET_SELECTED_TIME,
+    payload: selectedTime
+});
+
+export const setDidSelectTime = (didSelectTime) => ({
+    type: BookingTypes.SET_DID_SELECT_TIME,
+    payload: didSelectTime
+});
+
+export const setName = (name) => ({
+    type: BookingTypes.SET_NAME,
+    payload: name
+});
+
+export const setEmail = (email) => ({
+    type: BookingTypes.SET_EMAIL,
+    payload: email
+});
+
+export const setPhone = (phone) => ({
+    type: BookingTypes.SET_PHONE,
+    payload: phone
+});
+

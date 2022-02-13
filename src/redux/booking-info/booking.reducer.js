@@ -6,9 +6,9 @@ const INITIAL_STATE = {
     selectedService: 'Service',
     serviceDuration: '',
     didSelectService: false,
-
-
     selectedTime: '',
+    didSelectTime: false,
+
     name: '',
     email: '',
     phone: ''
@@ -40,6 +40,31 @@ const bookingReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 didSelectService: action.payload
+            }
+        case BookingTypes.SET_SELECTED_TIME:
+            return {
+                ...state,
+                selectedTime: action.payload
+            }
+        case BookingTypes.SET_DID_SELECT_TIME:
+            return {
+                ...state,
+                didSelectTime: action.payload
+            }
+        case BookingTypes.SET_NAME:
+            return {
+                ...state,
+                name: action.payload
+            }
+        case BookingTypes.SET_EMAIL:
+            return {
+                ...state,
+                email: action.payload
+            }
+        case BookingTypes.SET_PHONE:
+            return {
+                ...state,
+                phone: action.payload
             }
         default:
             return state;
