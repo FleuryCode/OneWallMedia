@@ -98,6 +98,7 @@ class TimeSelector extends React.Component {
         } else if (serviceDuration === 'long') {
             timeSlots = longDurationArray;
         }
+        
         if(this.state.activeId !== null) {
             timeSlots[this.state.activeId - 1].isActive = true;
         }

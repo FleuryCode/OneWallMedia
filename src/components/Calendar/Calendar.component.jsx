@@ -19,7 +19,9 @@ class Calendar extends React.Component {
 
         this.state = {
             displayedDate: props.date,
-            displayedMonth: props.month
+            displayedMonth: props.month,
+            isDateActive: null,
+            activeDateId: ''
         }
     }
     render() {
@@ -110,15 +112,20 @@ class Calendar extends React.Component {
             });
         }
 
-        const selectedDayClick = (date, isDisabled) => {
+        const selectedDayClick = (date, isDisabled, id) => {
             if(!isDisabled) {
                 this.props.setSelectedDate(date);
                 this.props.setDidSelectDay(true);
+                this.setState({
+                    isDateActive: true,
+                    activeDateId: id
+                });
             }else{
                 console.log('Pick a valid date');
             }
             
         }
+
 
         // Creating Calendar Days Array
         const date = this.state.displayedDate;
@@ -129,8 +136,8 @@ class Calendar extends React.Component {
         const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
         const nextDays = 7 - lastDayIndex - 1;
 
-        let days = [];
 
+        let days = [];
         // Previous Month Days
         for (let x = firstDayIndex; x > 0; x--) {
             days.push({
@@ -138,6 +145,7 @@ class Calendar extends React.Component {
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(subMonths(new Date(this.state.displayedDate), 1), "MM")) + "-" + (prevLastDay - x + 1),
                 isDisabled: true,
                 hasAvailable: false,
+                isActive: false,
                 handleClick: selectedDayClick
             });
         }
@@ -148,6 +156,7 @@ class Calendar extends React.Component {
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(new Date(this.state.displayedDate), "MM")) + "-" + (i),
                 isDisabled: false,
                 hasAvailable: true,  //Change this eventually based on Calendar. Might look at redoing this part
+                isActive: false,
                 handleClick: selectedDayClick
             });
         }
@@ -159,8 +168,14 @@ class Calendar extends React.Component {
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(addMonths(new Date(this.state.displayedDate), 1), "MM")) + "-" + (j),
                 isDisabled: true,
                 hasAvailable: false,
+                isActive: false,
                 handleClick: selectedDayClick
             });
+        }
+        for (let i = 0; i < days.length; i++) {
+            if(days[i].id === this.state.activeDateId) {
+                days[i].isActive = this.state.isDateActive;
+            }
         }
        
         return (
@@ -210,6 +225,7 @@ class Calendar extends React.Component {
                             dayNumber={day.dayNumber}
                             isDisabled={day.isDisabled}
                             hasAvailable={day.hasAvailable}
+                            isActive={day.isActive}
                             handleClick={day.handleClick}
                             />
                         ))}
