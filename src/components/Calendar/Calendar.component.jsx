@@ -4,10 +4,12 @@ import { format, subMonths, addMonths } from "date-fns";
 import CalendarDay from "../CalendarDay/CalendarDay.component";
 import prevArrow from '../../assets/prevArrow.svg';
 import nextArrow from '../../assets/nextArrow.svg';
+import { KEYS } from '../../Keys';
+import axios from 'axios';
 
 // Redux
 import { connect } from "react-redux";
-import {setSelectedDate, setDidSelectDay} from '../../redux/booking-info/booking.actions';
+import { setSelectedDate, setDidSelectDay } from '../../redux/booking-info/booking.actions';
 
 
 
@@ -25,72 +27,59 @@ class Calendar extends React.Component {
         }
     }
     render() {
+
+        // CLEAN UP YOUR DATE FORMATS. YOU CAN WRITE IT LIKE THIS. SO MUCH EASIER!!!!!
+        // const dateTest = format(new Date(this.state.displayedDate), 'yyyy-MM-dd');
+        // console.log(dateTest);
+
         // Grabbing Information
-        // const currentDate = new Date();
-        // let currentMonth = currentDate.getMonth();
-        // switch (currentMonth) {
-        //     case 0:
-        //         currentMonth = '01';
-        //         break;
-        //     case 1:
-        //         currentMonth = '02';
-        //         break;
-        //     case 2:
-        //         currentMonth = '03';
-        //         break;
-        //     case 3:
-        //         currentMonth = '04';
-        //         break;
-        //     case 4:
-        //         currentMonth = '05';
-        //         break;
-        //     case 5:
-        //         currentMonth = '06';
-        //         break;
-        //     case 6:
-        //         currentMonth = '07';
-        //         break;
-        //     case 7:
-        //         currentMonth = '08';
-        //         break;
-        //     case 8:
-        //         currentMonth = '09';
-        //         break;
-        //     case 9:
-        //         currentMonth = '10';
-        //         break;
-        //     case 10:
-        //         currentMonth = '11';
-        //         break;
-        //     case 11:
-        //         currentMonth = '12';
-        //         break;
-        //     default:
-        //         currentMonth = '01';
-        // }
-        // const currentYear = currentDate.getFullYear();
-        // const currentYearMonth = `${currentYear}-${currentMonth}`;
+        const displayedYearMonth = `${format(new Date(this.state.displayedDate), 'yyyy')}-${format(new Date(this.state.displayedDate), "MM")}`;
 
-        // const calendarId = KEYS.CALENDAR_ID;
-        // const apiKey = KEYS.CALENDAR_API;
-        // let eventList = [];
-        // const generateEventList = () => {
-        //     axios.get(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`)
-        //         .then(res => {
-        //             console.log(`statusCode: ${res.status}`);
-        //             let rawArray = res.data.items;
-        //             for (let index = 0; index < rawArray.length; index++) {
-        //                 if (res.data.items[index].start.dateTime.includes(currentYearMonth)) {
-        //                     eventList.push(res.data.items[index]);
-        //                 }
+        const calendarId = KEYS.CALENDAR_ID;
+        const apiKey = KEYS.CALENDAR_API;
+        let monthEventList = [];
+        const generateMonthEventList = () => {
+            axios.get(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`)
+                .then(res => {
+                    console.log(`statusCode: ${res.status}`);
+                    let rawArray = res.data.items;
+                    for (let i = 0; i < rawArray.length; i++) {
+                        // For Events with Times
+                        if (rawArray[i].start.hasOwnProperty('dateTime')) {
+                            if(rawArray[i].start.dateTime.includes(displayedYearMonth)) {
+                                monthEventList.push({
+                                    id: rawArray[i].id,
+                                    startDate: format(new Date(rawArray[i].start.dateTime), 'yyyy-MM-dd'),
+                                    description: rawArray[i].description,
 
-        //             }
-        //             console.log(eventList);
-        //         })
-        //         .catch(error => {
-        //             console.log(error);
-        //         })
-        // }
+                                })
+                            }
+                        // For All Day Events
+                        }else if(rawArray[i].start.hasOwnProperty('date')) {
+                            if(rawArray[i].start.date.includes(displayedYearMonth)) {
+                                monthEventList.push({
+                                    id: rawArray[i].id,
+                                    startDate: format(new Date(rawArray[i].start.date), 'yyyy-MM-dd'),
+                                    description: rawArray[i].description,
+
+                                })
+                            }
+                        }
+                    }
+
+                    // for (let index = 0; index < rawArray.length; index++) {
+                    //     if (res.data.items[index].start.dateTime.includes(displayedYearMonth)) {
+                    //         monthEventList.push(res.data.items[index]);
+                    //     }
+
+                    // }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+
+                console.log(monthEventList);
+        }
 
 
         // Previous and Next Month Button Click Functions
@@ -113,17 +102,17 @@ class Calendar extends React.Component {
         }
 
         const selectedDayClick = (date, isDisabled, id) => {
-            if(!isDisabled) {
+            if (!isDisabled) {
                 this.props.setSelectedDate(date);
                 this.props.setDidSelectDay(true);
                 this.setState({
                     isDateActive: true,
                     activeDateId: id
                 });
-            }else{
+            } else {
                 console.log('Pick a valid date');
             }
-            
+
         }
 
 
@@ -172,12 +161,13 @@ class Calendar extends React.Component {
                 handleClick: selectedDayClick
             });
         }
+        // Active Day
         for (let i = 0; i < days.length; i++) {
-            if(days[i].id === this.state.activeDateId) {
+            if (days[i].id === this.state.activeDateId) {
                 days[i].isActive = this.state.isDateActive;
             }
         }
-       
+
         return (
             <div className="calendarContainer container-fluid">
                 <div className="row">
@@ -220,16 +210,19 @@ class Calendar extends React.Component {
                     <div className="col-12 px-5 days">
                         {days.map(day => (
                             <CalendarDay
-                            key={day.id}
-                            date = {day.id}
-                            dayNumber={day.dayNumber}
-                            isDisabled={day.isDisabled}
-                            hasAvailable={day.hasAvailable}
-                            isActive={day.isActive}
-                            handleClick={day.handleClick}
+                                key={day.id}
+                                date={day.id}
+                                dayNumber={day.dayNumber}
+                                isDisabled={day.isDisabled}
+                                hasAvailable={day.hasAvailable}
+                                isActive={day.isActive}
+                                handleClick={day.handleClick}
                             />
                         ))}
                     </div>
+                </div>
+                <div className="row">
+                    <button onClick={generateMonthEventList} >Generate List Test Button</button>
                 </div>
             </div>
         );
