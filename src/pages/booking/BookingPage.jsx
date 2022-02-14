@@ -13,12 +13,8 @@ import { setName, setEmail, setPhone } from '../../redux/booking-info/booking.ac
 class BookingPage extends React.Component {
     render() {
 
-        // Redux Test
+        // Redux Variables
         const { selectedDay, didSelectDay, didSelectTime, name, email, phone, setName, setEmail, setPhone } = this.props;
-        let reduxOne = selectedDay;
-        let reduxTwo = didSelectDay
-        console.log(reduxOne);
-        console.log(reduxTwo);
 
         const date = new Date();
         const month = format(new Date(date), "MMMM");
