@@ -13,14 +13,16 @@
         margin: 1% 1%;
         display: block;
         border: none;
+        font-size: 120%;
+        font-weight: 700;
         line-height: 4vw;
-        color: white;
+        color: #4D4D4D;
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
     }
 
     .isDisabled {
         opacity: 0.4;
-        background-color: rgb(94, 94, 94);
+        background-color: #8f8e8e40 !important;
         cursor: default !important;
     }
     
@@ -30,10 +32,11 @@
     
     .hasAvailable {
         cursor: pointer;
-        background-color: rgb(136, 185, 138);
+        background-color: #99EFA0;
     }
     
     .notAvailable {
-        background-color: rgb(180, 98, 98);
+        background-color: rgb(189, 113, 113);
+        cursor: default !important;
     }
 }

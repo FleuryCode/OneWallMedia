@@ -10,6 +10,7 @@
     text-align: center;
     text-transform: uppercase;
     color: #6D956F;
+    font-weight: 700;
 
     p {
         margin: 0;
@@ -22,4 +23,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.calendarContainer {
+
+    h2{
+        min-width: 140px;
+        text-align: center;
+    }
 }

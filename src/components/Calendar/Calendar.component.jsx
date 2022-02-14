@@ -137,7 +137,7 @@ class Calendar extends React.Component {
                 dayNumber: (prevLastDay - x + 1),
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(subMonths(new Date(this.state.displayedDate), 1), "MM")) + "-" + (prevLastDay - x + 1),
                 isDisabled: true,
-                hasAvailable: true, //Change this eventually based on Calendar. Might look at redoing this part
+                hasAvailable: false,
                 handleClick: selectedDayClick
             });
         }
@@ -147,7 +147,7 @@ class Calendar extends React.Component {
                 dayNumber: i,
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(new Date(this.state.displayedDate), "MM")) + "-" + (i),
                 isDisabled: false,
-                hasAvailable: true,
+                hasAvailable: true,  //Change this eventually based on Calendar. Might look at redoing this part
                 handleClick: selectedDayClick
             });
         }
@@ -158,7 +158,7 @@ class Calendar extends React.Component {
                 dayNumber: j,
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(addMonths(new Date(this.state.displayedDate), 1), "MM")) + "-" + (j),
                 isDisabled: true,
-                hasAvailable: true,
+                hasAvailable: false,
                 handleClick: selectedDayClick
             });
         }
@@ -170,7 +170,7 @@ class Calendar extends React.Component {
                         <div onClick={prevMonth} className="prevButton d-flex justify-content-center align-items-center mt-1">
                             <img src={prevArrow} alt="Previous month button" />
                         </div>
-                        <h2 className="mb-0 mx-3">{this.state.displayedMonth}</h2>
+                        <h2 className="mb-0 mx-2">{this.state.displayedMonth}</h2>
                         <div onClick={nextMonth} className="nextButton d-flex justify-content-center align-items-center mt-1">
                             <img src={nextArrow} alt="Next month button" />
                         </div>
