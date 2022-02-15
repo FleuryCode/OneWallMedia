@@ -23,9 +23,31 @@ class Calendar extends React.Component {
             displayedDate: props.date,
             displayedMonth: props.month,
             isDateActive: null,
-            activeDateId: ''
+            activeDateId: '',
+
+            rawMonthEventList: []
         }
     }
+    generateRawEventList = async () => {
+        const calendarId = KEYS.CALENDAR_ID;
+        const apiKey = KEYS.CALENDAR_API;
+        await axios.get(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`)
+            .then(res => {
+                this.setState({
+                    rawMonthEventList: res.data.items
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    componentDidMount() {
+        this.generateRawEventList();
+
+        
+    }
+
     render() {
 
         // CLEAN UP YOUR DATE FORMATS. YOU CAN WRITE IT LIKE THIS. SO MUCH EASIER!!!!!
@@ -33,53 +55,76 @@ class Calendar extends React.Component {
         // console.log(dateTest);
 
         // Grabbing Information
-        const displayedYearMonth = `${format(new Date(this.state.displayedDate), 'yyyy')}-${format(new Date(this.state.displayedDate), "MM")}`;
-
-        const calendarId = KEYS.CALENDAR_ID;
-        const apiKey = KEYS.CALENDAR_API;
+        console.log('RAW LIST', this.state.rawMonthEventList);
         let monthEventList = [];
-        const generateMonthEventList = () => {
-            axios.get(`https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}`)
-                .then(res => {
-                    console.log(`statusCode: ${res.status}`);
-                    let rawArray = res.data.items;
-                    for (let i = 0; i < rawArray.length; i++) {
-                        // For Events with Times
-                        if (rawArray[i].start.hasOwnProperty('dateTime')) {
-                            if(rawArray[i].start.dateTime.includes(displayedYearMonth)) {
-                                monthEventList.push({
-                                    id: rawArray[i].id,
-                                    startDate: format(new Date(rawArray[i].start.dateTime), 'yyyy-MM-dd'),
-                                    description: rawArray[i].description,
-
-                                })
-                            }
-                        // For All Day Events
-                        }else if(rawArray[i].start.hasOwnProperty('date')) {
-                            if(rawArray[i].start.date.includes(displayedYearMonth)) {
-                                monthEventList.push({
-                                    id: rawArray[i].id,
-                                    startDate: format(new Date(rawArray[i].start.date), 'yyyy-MM-dd'),
-                                    description: rawArray[i].description,
-
-                                })
-                            }
-                        }
-                    }
-
-                    // for (let index = 0; index < rawArray.length; index++) {
-                    //     if (res.data.items[index].start.dateTime.includes(displayedYearMonth)) {
-                    //         monthEventList.push(res.data.items[index]);
-                    //     }
-
-                    // }
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-
-                console.log(monthEventList);
+        const displayedYearMonth = format(new Date(this.state.displayedDate), "yyyy-MM");
+        const { rawMonthEventList } = this.state
+        for (let i = 0; i < rawMonthEventList.length; i++) {
+            // For Events with Times
+            if (rawMonthEventList[i].start.hasOwnProperty('dateTime')) {
+                if (rawMonthEventList[i].start.dateTime.includes(displayedYearMonth)) {
+                    monthEventList.push({
+                        id: rawMonthEventList[i].id,
+                        startDate: format(new Date(rawMonthEventList[i].start.dateTime), 'yyyy-MM-dd'),
+                        startTime: format(new Date(rawMonthEventList[i].start.dateTime), 'H:mm'),
+                        endTime: format(new Date(rawMonthEventList[i].end.dateTime), 'H:mm'),
+                        timeSlot: format(new Date(rawMonthEventList[i].start.dateTime), 'H:mm') + '-' + format(new Date(rawMonthEventList[i].end.dateTime), 'H:mm'),
+                        description: rawMonthEventList[i].summary,
+                    });
+                }
+                // For All Day Events
+            } else if (rawMonthEventList[i].start.hasOwnProperty('date')) {
+                if (rawMonthEventList[i].start.date.includes(displayedYearMonth)) {
+                    monthEventList.push({
+                        id: rawMonthEventList[i].id,
+                        startDate: format(new Date(rawMonthEventList[i].start.date), 'yyyy-MM-dd'),
+                        startTime: '1:00',
+                        endTime: '23:00',
+                        timeSlot: '1:00-23:00',
+                        description: rawMonthEventList[i].summary,
+                    });
+                }
+            }
         }
+
+        console.log('Filtered', monthEventList);
+
+        // TimeSlot Testing. This is going to suck.
+        let timeSlots = [
+            {
+                id: 1,
+                hasAvailable: true
+            },
+            {
+                id: 2,
+                hasAvailable: true
+            },
+            {
+                id: 3,
+                hasAvailable: true
+            },
+            {
+                id: 4,
+                hasAvailable: true
+            },
+            {
+                id: 5,
+                hasAvailable: true
+            },
+            {
+                id: 6,
+                hasAvailable: true
+            }
+        ];
+        for (let d = 0; d < monthEventList.length; d++) {
+            const currentDate = monthEventList[d].startDate;
+            if (currentDate === '2022-02-06') { //This is where you would put a dynamic date
+                console.log(monthEventList[d]);
+            }
+        }
+
+
+
 
 
         // Previous and Next Month Button Click Functions
@@ -140,6 +185,7 @@ class Calendar extends React.Component {
         }
         // Selected Month Days
         for (let i = 1; i <= lastDay; i++) {
+            // Pass Checking equation here.
             days.push({
                 dayNumber: i,
                 id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(new Date(this.state.displayedDate), "MM")) + "-" + (i),
@@ -222,7 +268,7 @@ class Calendar extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <button onClick={generateMonthEventList} >Generate List Test Button</button>
+                    <button onClick={this.generateMonthEventList} >Generate List Test Button</button>
                 </div>
             </div>
         );
