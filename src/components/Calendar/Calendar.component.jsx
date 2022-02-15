@@ -45,7 +45,7 @@ class Calendar extends React.Component {
     componentDidMount() {
         this.generateRawEventList();
 
-        
+
     }
 
     render() {
@@ -119,9 +119,39 @@ class Calendar extends React.Component {
         for (let d = 0; d < monthEventList.length; d++) {
             const currentDate = monthEventList[d].startDate;
             if (currentDate === '2022-02-06') { //This is where you would put a dynamic date
-                console.log(monthEventList[d]);
+                const startString = (monthEventList[d].startTime).split(':');
+                const endString = (monthEventList[d].endTime.split(':'));
+                // const eventStart = parseFloat(startString[0] + '.' + startString[1]);
+                // const eventEnd = parseFloat(endString[0] + '.' + endString[1]);
+
+
+                const eventStart = 14;
+                const eventEnd = 15;
+
+
+                if (eventStart < 8) {
+                    console.log('Event starts before slot time start of 8');
+                } else if (eventStart < 10) {
+                    console.log('Event starts before slot time start of 10 but after 8');
+                } else if (eventStart < 12) {
+                    console.log('Event starts before slot time start of 12butt after 10');
+                } else if (eventStart < 14) {
+                    console.log('Event starts before slot time start of 14 but after 12');
+                } else if (eventStart < 16) {
+                    console.log('Event starts before slot time start of 16 but after 14');
+                    const eventDuration = eventEnd - eventStart;
+                    console.log('Duration', eventDuration);
+                    if (eventDuration <= 1) {
+                        console.log('The 4th time slot now booked');
+                    }
+
+
+                } else if (eventStart < 18) {
+                    console.log('Event starts before slot time start of 18 ut after 16')
+                }
             }
         }
+
 
 
 
@@ -157,10 +187,7 @@ class Calendar extends React.Component {
             } else {
                 console.log('Pick a valid date');
             }
-
         }
-
-
         // Creating Calendar Days Array
         const date = this.state.displayedDate;
         date.setDate(1);
@@ -215,7 +242,7 @@ class Calendar extends React.Component {
         }
 
         return (
-            <div className="calendarContainer container-fluid">
+            <div className="calendarContainer container-fluid" >
                 <div className="row">
                     <div className="col-12 d-flex flex-row justify-content-center align-items-center mt-5">
                         <div onClick={prevMonth} className="prevButton d-flex justify-content-center align-items-center mt-1">
@@ -274,6 +301,7 @@ class Calendar extends React.Component {
         );
     }
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
     setSelectedDate: selectedDate => dispatch(setSelectedDate(selectedDate)),
