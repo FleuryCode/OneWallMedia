@@ -89,164 +89,7 @@ class Calendar extends React.Component {
 
         console.log('Filtered', monthEventList);
 
-        // TimeSlot Testing. This is going to suck.
-        let timeSlots = [
-            {
-                id: 1,
-                hasAvailable: true
-            },
-            {
-                id: 2,
-                hasAvailable: true
-            },
-            {
-                id: 3,
-                hasAvailable: true
-            },
-            {
-                id: 4,
-                hasAvailable: true
-            },
-            {
-                id: 5,
-                hasAvailable: true
-            },
-            {
-                id: 6,
-                hasAvailable: true
-            }
-        ];
-        for (let d = 0; d < monthEventList.length; d++) {
-            const currentDate = monthEventList[d].startDate;
-            if (currentDate === '2022-02-06') { //This is where you would put a dynamic date
-                const startString = (monthEventList[d].startTime).split(':');
-                const endString = (monthEventList[d].endTime.split(':'));
-                const eventStart = parseFloat(startString[0] + '.' + startString[1]);
-                const eventEnd = parseFloat(endString[0] + '.' + endString[1]);
 
-
-
-                if (eventStart < 8) {
-                    switch (true) {
-                        case eventEnd <= 8:
-                            console.log('Does not Effect');
-                            break;
-                        case eventEnd <= 10:
-                            console.log('1st block booked');
-                            break
-                        case eventEnd <= 12:
-                            console.log('1st, 2nd block booked');
-                            break
-                        case eventEnd <= 14:
-                            console.log('1st, 2nd, 3rd block booked');
-                            break
-                        case eventEnd <= 16:
-                            console.log('1st, 2nd, 3rd, 4th block booked');
-                            break;
-                        case eventEnd <= 18:
-                            console.log('1st, 2nd, 3rd, 4th, 5th block booked');
-                            break;
-                        case eventEnd > 18:
-                            console.log('All blocks booked');
-                            break;
-                    }
-                } else if (eventStart < 10) {
-                    //Range 9 to 9.9
-                    switch (true) {
-                        case eventEnd <= 10:
-                            console.log('1st block booked');
-                            break;
-                        case eventEnd <= 12:
-                            console.log('1st, 2nd block booked');
-                            break;
-                        case eventEnd <= 14:
-                            console.log('1st, 2nd, 3rd block booked');
-                            break;
-                        case eventEnd <= 16:
-                            console.log('1st, 2nd, 3rd, 4th block booked');
-                            break;
-                        case eventEnd <= 18:
-                            console.log('1st, 2nd, 3rd, 4th, 5th block booked');
-                            break;
-                        case eventEnd > 18:
-                            console.log('All blocks booked');
-                            break;
-                    }
-                } else if (eventStart < 12) {
-                    // Range 10 to 11.9
-                    //First block no longer available
-                    switch (true) {
-                        case eventEnd <= 12:
-                            console.log('2nd block booked');
-                            break;
-                        case eventEnd <= 14:
-                            console.log('2nd, 3rd block booked');
-                            break;
-                        case eventEnd <= 16:
-                            console.log('2nd, 3rd, 4th block booked');
-                            break;
-                        case eventEnd <= 18:
-                            console.log('2nd, 3rd, 4th, 5th block booked');
-                            break;
-                        case eventEnd > 18:
-                            console.log('2nd, 3rd, 4th, 5th, 6th blocks booked');
-                            break;
-                    }
-                } else if (eventStart < 14) {
-                    // Range 12 to 13.9
-                    // 1st and 2nd block no longer available
-                    switch (true) {
-                        case eventEnd <= 14:
-                            console.log('3rd block booked');
-                            break;
-                        case eventEnd <= 16:
-                            console.log('3rd, 4th block booked');
-                            break;
-                        case eventEnd <= 18:
-                            console.log('3rd, 4th, 5th block booked');
-                            break;
-                        case eventEnd > 18:
-                            console.log('3rd, 4th, 5th, 6th block booked');
-                            break;
-                    }
-                } else if (eventStart < 16) {
-                    // Range 14 to 15.9
-                    // 1st, 2nd, 3rd block no longer available
-                    switch (true) {
-                        case eventEnd <= 16:
-                            console.log('4th block booked');
-                            break;
-                        case eventEnd <= 18:
-                            console.log('4th, 5th block booked');
-                            break;
-                        case eventEnd > 18:
-                            console.log('4th, 5th, 6th block booked');
-                            break;
-                    }
-                } else if (eventStart < 18) {
-                    // Range 16 to 17.9
-                    // 1st, 2nd, 3rd, 4th block no longer available
-                    switch (true) {
-                        case eventEnd <= 18:
-                            console.log('5th block booked');
-                            break;
-                        case eventEnd > 18:
-                            console.log('5th, 6th block booked');
-                            break;
-                    }
-                } else if (eventStart < 20) {
-                    // Range 18 to 19.5
-                    // All but 6th block unavailable
-                    switch (true) {
-                        case eventEnd > 18:
-                            console.log('6th block booked');
-                            break;
-                    }
-                } else if (eventStart >= 20) {
-                    console.log('Does not effect anything');
-                }
-            }
-        }
 
 
 
@@ -308,12 +151,257 @@ class Calendar extends React.Component {
         }
         // Selected Month Days
         for (let i = 1; i <= lastDay; i++) {
-            // Pass Checking equation here.
+            let timeSlots = [
+                {
+                    id: 1,
+                    hasAvailable: true
+                },
+                {
+                    id: 2,
+                    hasAvailable: true
+                },
+                {
+                    id: 3,
+                    hasAvailable: true
+                },
+                {
+                    id: 4,
+                    hasAvailable: true
+                },
+                {
+                    id: 5,
+                    hasAvailable: true
+                },
+                {
+                    id: 6,
+                    hasAvailable: true
+                }
+            ];
+            const date = format(new Date(this.state.displayedDate), "yyyy-MM-") + (i);
+            for (let d = 0; d < monthEventList.length; d++) {
+                const currentDate = monthEventList[d].startDate;
+                if (currentDate === date) {
+                    const startString = (monthEventList[d].startTime).split(':');
+                    const endString = (monthEventList[d].endTime.split(':'));
+                    const eventStart = parseFloat(startString[0] + '.' + startString[1]);
+                    const eventEnd = parseFloat(endString[0] + '.' + endString[1]);
+
+                    if (eventStart < 8) {
+                        switch (true) {
+                            case eventEnd <= 8:
+                                console.log('Does not Effect');
+                                break;
+                            case eventEnd <= 10:
+                                console.log('1st block booked');
+                                timeSlots[0].hasAvailable = false;
+                                break
+                            case eventEnd <= 12:
+                                console.log('1st, 2nd block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                break
+                            case eventEnd <= 14:
+                                console.log('1st, 2nd, 3rd block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                break
+                            case eventEnd <= 16:
+                                console.log('1st, 2nd, 3rd, 4th block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                break;
+                            case eventEnd <= 18:
+                                console.log('1st, 2nd, 3rd, 4th, 5th block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                break;
+                            case eventEnd > 18:
+                                console.log('All blocks booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                timeSlots[5].hasAvailable = false;
+                                break;
+                        }
+                    } else if (eventStart < 10) {
+                        //Range 9 to 9.9
+                        switch (true) {
+                            case eventEnd <= 10:
+                                console.log('1st block booked');
+                                timeSlots[0].hasAvailable = false;
+                                break;
+                            case eventEnd <= 12:
+                                console.log('1st, 2nd block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                break;
+                            case eventEnd <= 14:
+                                console.log('1st, 2nd, 3rd block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                break;
+                            case eventEnd <= 16:
+                                console.log('1st, 2nd, 3rd, 4th block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                break;
+                            case eventEnd <= 18:
+                                console.log('1st, 2nd, 3rd, 4th, 5th block booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                break;
+                            case eventEnd > 18:
+                                console.log('All blocks booked');
+                                timeSlots[0].hasAvailable = false;
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                timeSlots[5].hasAvailable = false;
+                                break;
+                        }
+                    } else if (eventStart < 12) {
+                        // Range 10 to 11.9
+                        //First block no longer available
+                        switch (true) {
+                            case eventEnd <= 12:
+                                console.log('2nd block booked');
+                                timeSlots[1].hasAvailable = false;
+                                break;
+                            case eventEnd <= 14:
+                                console.log('2nd, 3rd block booked');
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                break;
+                            case eventEnd <= 16:
+                                console.log('2nd, 3rd, 4th block booked');
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                break;
+                            case eventEnd <= 18:
+                                console.log('2nd, 3rd, 4th, 5th block booked');
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                break;
+                            case eventEnd > 18:
+                                console.log('2nd, 3rd, 4th, 5th, 6th blocks booked');
+                                timeSlots[1].hasAvailable = false;
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                timeSlots[5].hasAvailable = false;
+                                break;
+                        }
+                    } else if (eventStart < 14) {
+                        // Range 12 to 13.9
+                        // 1st and 2nd block no longer available
+                        switch (true) {
+                            case eventEnd <= 14:
+                                console.log('3rd block booked');
+                                timeSlots[2].hasAvailable = false;
+                                break;
+                            case eventEnd <= 16:
+                                console.log('3rd, 4th block booked');
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                break;
+                            case eventEnd <= 18:
+                                console.log('3rd, 4th, 5th block booked');
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                break;
+                            case eventEnd > 18:
+                                console.log('3rd, 4th, 5th, 6th block booked');
+                                timeSlots[2].hasAvailable = false;
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                timeSlots[5].hasAvailable = false;
+                                break;
+                        }
+                    } else if (eventStart < 16) {
+                        // Range 14 to 15.9
+                        // 1st, 2nd, 3rd block no longer available
+                        switch (true) {
+                            case eventEnd <= 16:
+                                console.log('4th block booked');
+                                timeSlots[3].hasAvailable = false;
+                                break;
+                            case eventEnd <= 18:
+                                console.log('4th, 5th block booked');
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                break;
+                            case eventEnd > 18:
+                                console.log('4th, 5th, 6th block booked');
+                                timeSlots[3].hasAvailable = false;
+                                timeSlots[4].hasAvailable = false;
+                                timeSlots[5].hasAvailable = false;
+                                break;
+                        }
+                    } else if (eventStart < 18) {
+                        // Range 16 to 17.9
+                        // 1st, 2nd, 3rd, 4th block no longer available
+                        switch (true) {
+                            case eventEnd <= 18:
+                                console.log('5th block booked');
+                                timeSlots[4].hasAvailable = false;
+                                break;
+                            case eventEnd > 18:
+                                console.log('5th, 6th block booked');
+                                timeSlots[4].hasAvailable = false;
+                                timeSlots[5].hasAvailable = false;
+                                break;
+                        }
+                    } else if (eventStart < 20) {
+                        // Range 18 to 19.5
+                        // All but 6th block unavailable
+                        switch (true) {
+                            case eventEnd > 18:
+                                console.log('6th block booked');
+                                timeSlots[5].hasAvailable = false;
+                                break;
+                        }
+                    } else if (eventStart >= 20) {
+                        console.log('Does not effect anything');
+                    }
+                }
+            }
+
+            let anyAvailable = true;
+            if (
+                !timeSlots[0].hasAvailable &&
+                !timeSlots[1].hasAvailable &&
+                !timeSlots[2].hasAvailable &&
+                !timeSlots[3].hasAvailable &&
+                !timeSlots[4].hasAvailable &&
+                !timeSlots[5].hasAvailable
+            ) {
+                anyAvailable = false;
+            }
+
             days.push({
                 dayNumber: i,
-                id: (format(new Date(this.state.displayedDate), "yyyy")) + "-" + (format(new Date(this.state.displayedDate), "MM")) + "-" + (i),
+                id: date,
                 isDisabled: false,
-                hasAvailable: true,  //Change this eventually based on Calendar. Might look at redoing this part
+                hasAvailable: anyAvailable,  //Change this eventually based on Calendar. Might look at redoing this part
                 isActive: false,
                 handleClick: selectedDayClick
             });
