@@ -121,33 +121,129 @@ class Calendar extends React.Component {
             if (currentDate === '2022-02-06') { //This is where you would put a dynamic date
                 const startString = (monthEventList[d].startTime).split(':');
                 const endString = (monthEventList[d].endTime.split(':'));
-                // const eventStart = parseFloat(startString[0] + '.' + startString[1]);
-                // const eventEnd = parseFloat(endString[0] + '.' + endString[1]);
+                const eventStart = parseFloat(startString[0] + '.' + startString[1]);
+                const eventEnd = parseFloat(endString[0] + '.' + endString[1]);
 
-
-                const eventStart = 14;
-                const eventEnd = 15;
 
 
                 if (eventStart < 8) {
-                    console.log('Event starts before slot time start of 8');
-                } else if (eventStart < 10) {
-                    console.log('Event starts before slot time start of 10 but after 8');
-                } else if (eventStart < 12) {
-                    console.log('Event starts before slot time start of 12butt after 10');
-                } else if (eventStart < 14) {
-                    console.log('Event starts before slot time start of 14 but after 12');
-                } else if (eventStart < 16) {
-                    console.log('Event starts before slot time start of 16 but after 14');
-                    const eventDuration = eventEnd - eventStart;
-                    console.log('Duration', eventDuration);
-                    if (eventDuration <= 1) {
-                        console.log('The 4th time slot now booked');
+                    switch (true) {
+                        case eventEnd <= 8:
+                            console.log('Does not Effect');
+                            break;
+                        case eventEnd <= 10:
+                            console.log('1st block booked');
+                            break
+                        case eventEnd <= 12:
+                            console.log('1st, 2nd block booked');
+                            break
+                        case eventEnd <= 14:
+                            console.log('1st, 2nd, 3rd block booked');
+                            break
+                        case eventEnd <= 16:
+                            console.log('1st, 2nd, 3rd, 4th block booked');
+                            break;
+                        case eventEnd <= 18:
+                            console.log('1st, 2nd, 3rd, 4th, 5th block booked');
+                            break;
+                        case eventEnd > 18:
+                            console.log('All blocks booked');
+                            break;
                     }
-
-
+                } else if (eventStart < 10) {
+                    //Range 9 to 9.9
+                    switch (true) {
+                        case eventEnd <= 10:
+                            console.log('1st block booked');
+                            break;
+                        case eventEnd <= 12:
+                            console.log('1st, 2nd block booked');
+                            break;
+                        case eventEnd <= 14:
+                            console.log('1st, 2nd, 3rd block booked');
+                            break;
+                        case eventEnd <= 16:
+                            console.log('1st, 2nd, 3rd, 4th block booked');
+                            break;
+                        case eventEnd <= 18:
+                            console.log('1st, 2nd, 3rd, 4th, 5th block booked');
+                            break;
+                        case eventEnd > 18:
+                            console.log('All blocks booked');
+                            break;
+                    }
+                } else if (eventStart < 12) {
+                    // Range 10 to 11.9
+                    //First block no longer available
+                    switch (true) {
+                        case eventEnd <= 12:
+                            console.log('2nd block booked');
+                            break;
+                        case eventEnd <= 14:
+                            console.log('2nd, 3rd block booked');
+                            break;
+                        case eventEnd <= 16:
+                            console.log('2nd, 3rd, 4th block booked');
+                            break;
+                        case eventEnd <= 18:
+                            console.log('2nd, 3rd, 4th, 5th block booked');
+                            break;
+                        case eventEnd > 18:
+                            console.log('2nd, 3rd, 4th, 5th, 6th blocks booked');
+                            break;
+                    }
+                } else if (eventStart < 14) {
+                    // Range 12 to 13.9
+                    // 1st and 2nd block no longer available
+                    switch (true) {
+                        case eventEnd <= 14:
+                            console.log('3rd block booked');
+                            break;
+                        case eventEnd <= 16:
+                            console.log('3rd, 4th block booked');
+                            break;
+                        case eventEnd <= 18:
+                            console.log('3rd, 4th, 5th block booked');
+                            break;
+                        case eventEnd > 18:
+                            console.log('3rd, 4th, 5th, 6th block booked');
+                            break;
+                    }
+                } else if (eventStart < 16) {
+                    // Range 14 to 15.9
+                    // 1st, 2nd, 3rd block no longer available
+                    switch (true) {
+                        case eventEnd <= 16:
+                            console.log('4th block booked');
+                            break;
+                        case eventEnd <= 18:
+                            console.log('4th, 5th block booked');
+                            break;
+                        case eventEnd > 18:
+                            console.log('4th, 5th, 6th block booked');
+                            break;
+                    }
                 } else if (eventStart < 18) {
-                    console.log('Event starts before slot time start of 18 ut after 16')
+                    // Range 16 to 17.9
+                    // 1st, 2nd, 3rd, 4th block no longer available
+                    switch (true) {
+                        case eventEnd <= 18:
+                            console.log('5th block booked');
+                            break;
+                        case eventEnd > 18:
+                            console.log('5th, 6th block booked');
+                            break;
+                    }
+                } else if (eventStart < 20) {
+                    // Range 18 to 19.5
+                    // All but 6th block unavailable
+                    switch (true) {
+                        case eventEnd > 18:
+                            console.log('6th block booked');
+                            break;
+                    }
+                } else if (eventStart >= 20) {
+                    console.log('Does not effect anything');
                 }
             }
         }
