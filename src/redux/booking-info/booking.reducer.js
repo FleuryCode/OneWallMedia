@@ -8,10 +8,11 @@ const INITIAL_STATE = {
     didSelectService: false,
     selectedTime: '',
     didSelectTime: false,
-
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+
+    timeSlots: []
 }
 
 const bookingReducer = (state = INITIAL_STATE, action) => {
@@ -65,6 +66,11 @@ const bookingReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 phone: action.payload
+            }
+        case BookingTypes.SET_TIME_SLOTS:
+            return {
+                ...state,
+                timeSlots: action.payload
             }
         default:
             return state;

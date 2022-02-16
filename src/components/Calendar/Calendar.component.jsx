@@ -9,7 +9,7 @@ import axios from 'axios';
 
 // Redux
 import { connect } from "react-redux";
-import { setSelectedDate, setDidSelectDay } from '../../redux/booking-info/booking.actions';
+import { setSelectedDate, setDidSelectDay, setTimeSlots } from '../../redux/booking-info/booking.actions';
 
 
 
@@ -88,7 +88,7 @@ class Calendar extends React.Component {
             }
         }
 
-        
+
 
 
 
@@ -116,10 +116,11 @@ class Calendar extends React.Component {
             });
         }
 
-        const selectedDayClick = (date, isDisabled, id) => {
+        const selectedDayClick = (date, isDisabled, id, timeSlots) => {
             if (!isDisabled) {
                 this.props.setSelectedDate(date);
                 this.props.setDidSelectDay(true);
+                this.props.setTimeSlots(timeSlots);
                 this.setState({
                     isDateActive: true,
                     activeDateId: id
@@ -231,6 +232,8 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
                                 break;
+                            default:
+                                console.log('Does not do anything');
                         }
                     } else if (eventStart < 10) {
                         //Range 9 to 9.9
@@ -244,7 +247,7 @@ class Calendar extends React.Component {
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 break;
-                            // case eventEnd <= 14:
+                            case eventEnd <= 14:
                                 // console.log('1st, 2nd, 3rd block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
@@ -274,6 +277,8 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
                                 break;
+                            default:
+                                console.log('Does not do anything');
                         }
                     } else if (eventStart < 12) {
                         // Range 10 to 11.9
@@ -309,6 +314,8 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
                                 break;
+                            default:
+                                console.log('Does not do anything');
                         }
                     } else if (eventStart < 14) {
                         // Range 12 to 13.9
@@ -336,6 +343,8 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
                                 break;
+                            default:
+                                console.log('Does not do anything');
                         }
                     } else if (eventStart < 16) {
                         // Range 14 to 15.9
@@ -356,6 +365,8 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
                                 break;
+                            default:
+                                console.log('Does not do anything');
                         }
                     } else if (eventStart < 18) {
                         // Range 16 to 17.9
@@ -370,6 +381,8 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
                                 break;
+                            default:
+                                console.log('Does not do anything');
                         }
                     } else if (eventStart < 20) {
                         // Range 18 to 19.5
@@ -379,6 +392,8 @@ class Calendar extends React.Component {
                                 // console.log('6th block booked');
                                 timeSlots[5].hasAvailable = false;
                                 break;
+                            default:
+                                console.log('Does not do anything');
                         }
                     } else if (eventStart >= 20) {
                         // console.log('Does not effect anything');
@@ -404,6 +419,7 @@ class Calendar extends React.Component {
                 isDisabled: false,
                 hasAvailable: anyAvailable,  //Change this eventually based on Calendar. Might look at redoing this part
                 isActive: false,
+                availableTimeSlots: timeSlots,
                 handleClick: selectedDayClick
             });
         }
@@ -475,6 +491,7 @@ class Calendar extends React.Component {
                                 isDisabled={day.isDisabled}
                                 hasAvailable={day.hasAvailable}
                                 isActive={day.isActive}
+                                availableTimeSlots={day.availableTimeSlots}
                                 handleClick={day.handleClick}
                             />
                         ))}
@@ -491,7 +508,8 @@ class Calendar extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
     setSelectedDate: selectedDate => dispatch(setSelectedDate(selectedDate)),
-    setDidSelectDay: didSelectDay => dispatch(setDidSelectDay(didSelectDay))
+    setDidSelectDay: didSelectDay => dispatch(setDidSelectDay(didSelectDay)),
+    setTimeSlots: timeSlot => dispatch(setTimeSlots(timeSlot))
 });
 
 export default connect(null, mapDispatchToProps)(Calendar); //instead of null you can pass the argument that receives data.

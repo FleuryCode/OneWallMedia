@@ -50,3 +50,10 @@ export const setPhone = (phone) => ({
     payload: phone
 });
 
+export const setTimeSlots = (timeSlots) => ({
+    type: BookingTypes.SET_TIME_SLOTS,
+    payload: timeSlots
+});
+
+
+

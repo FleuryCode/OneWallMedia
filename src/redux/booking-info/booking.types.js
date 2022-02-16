@@ -8,5 +8,6 @@ export const BookingTypes = {
     SET_DID_SELECT_TIME: 'SET_DID_SELECT_TIME',
     SET_NAME: 'SET_NAME',
     SET_EMAIL: 'SET_EMAIL',
-    SET_PHONE: 'SET_PHONE'
+    SET_PHONE: 'SET_PHONE',
+    SET_TIME_SLOTS: 'SET_TIME_SLOTS'
 }

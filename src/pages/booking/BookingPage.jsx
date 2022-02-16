@@ -3,14 +3,12 @@ import Calendar from "../../components/Calendar/Calendar.component";
 import './BookingPage.styles.scss';
 import { format, toDate } from 'date-fns';
 import { ServiceList } from "./ServiceList";
-import { KEYS } from "../../Keys";
 
 import { connect } from "react-redux";
 import CustomDropDown from "../../components/CustomDropDown/CustomDropDown.component";
 import TimeSelector from "../../components/TimeSelector/TimeSelector.component";
 import CustomInput from '../../components/CustomInput/CustomInput.component';
 import { setName, setEmail, setPhone } from '../../redux/booking-info/booking.actions';
-import axios from "axios";
 
 class BookingPage extends React.Component {
 
