@@ -12,7 +12,7 @@ class TimeSelector extends React.Component {
         }
     }
     render() {
-        const {serviceDuration, didSelectService, setSelectedTime, setDidSelectTime, timeSlots} = this.props;
+        const { serviceDuration, didSelectService, setSelectedTime, setDidSelectTime, timeSlots } = this.props;
         const shortDurationArray = [
             {
                 timeSlot: '8:00 - 9:00',
@@ -91,7 +91,7 @@ class TimeSelector extends React.Component {
             }
         ];
 
-        
+
 
         // Creating the Array based on Service Clicked
         let displayedTimeSlots = [];
@@ -102,31 +102,36 @@ class TimeSelector extends React.Component {
         }
 
         // Assigning the values that were passed from the Calendar
-        if(timeSlots.length !== 0 && displayedTimeSlots.length !== 0) {
+        if (timeSlots.length !== 0 && displayedTimeSlots.length !== 0) {
             console.log();
-            for(let i = 0; i < timeSlots.length; i++) {
+            for (let i = 0; i < timeSlots.length; i++) {
                 displayedTimeSlots[i].hasAvailable = timeSlots[i].hasAvailable;
             }
             console.log(displayedTimeSlots);
-    
+
         }
 
-        
-        
-        if(this.state.activeId !== null) {
+
+
+        if (this.state.activeId !== null) {
             displayedTimeSlots[this.state.activeId - 1].isActive = true;
         }
 
-        
+
 
         const handleTimeClick = (time, id) => {
-            setSelectedTime(time);
-            setDidSelectTime(true);
-            this.setState({
-                isActive: true,
-                activeId: id
-            });
-            
+            if (displayedTimeSlots[id - 1].hasAvailable) {
+                setSelectedTime(time);
+                setDidSelectTime(true);
+                this.setState({
+                    isActive: true,
+                    activeId: id
+                });
+            }else {
+                console.log('Pick an available time');
+            }
+
+
         }
 
         return (
