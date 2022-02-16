@@ -34,4 +34,14 @@
     .notActive {
         background-color: #EBEBEB;
     }
+
+    .notAvailable {
+        background-color: #EBEBEB;
+        opacity: 0.4;
+        cursor: default !important;
+    }
+
+    .available {
+        background-color: #EBEBEB;
+    }
 }

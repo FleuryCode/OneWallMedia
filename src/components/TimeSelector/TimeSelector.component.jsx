@@ -8,11 +8,11 @@ class TimeSelector extends React.Component {
         super();
         this.state = {
             isActive: false,
-            activeId: null
+            activeId: null,
         }
     }
     render() {
-        const {serviceDuration, didSelectService, setSelectedTime, setDidSelectTime} = this.props;
+        const {serviceDuration, didSelectService, setSelectedTime, setDidSelectTime, timeSlots} = this.props;
         const shortDurationArray = [
             {
                 timeSlot: '8:00 - 9:00',
@@ -91,17 +91,33 @@ class TimeSelector extends React.Component {
             }
         ];
 
+        
+
         // Creating the Array based on Service Clicked
-        let timeSlots = [];
+        let displayedTimeSlots = [];
         if (serviceDuration === 'short') {
-            timeSlots = shortDurationArray;
+            displayedTimeSlots = shortDurationArray;
         } else if (serviceDuration === 'long') {
-            timeSlots = longDurationArray;
+            displayedTimeSlots = longDurationArray;
         }
+
+        // Assigning the values that were passed from the Calendar
+        if(timeSlots.length !== 0 && displayedTimeSlots.length !== 0) {
+            console.log();
+            for(let i = 0; i < timeSlots.length; i++) {
+                displayedTimeSlots[i].hasAvailable = timeSlots[i].hasAvailable;
+            }
+            console.log(displayedTimeSlots);
+    
+        }
+
+        
         
         if(this.state.activeId !== null) {
-            timeSlots[this.state.activeId - 1].isActive = true;
+            displayedTimeSlots[this.state.activeId - 1].isActive = true;
         }
+
+        
 
         const handleTimeClick = (time, id) => {
             setSelectedTime(time);
@@ -118,8 +134,8 @@ class TimeSelector extends React.Component {
                 <h5 className="text-uppercase">Time</h5>
                 <div className="row d-flex justify-content-center">
                     {
-                        timeSlots.map(time => (
-                            <div onClick={() => handleTimeClick(time.timeSlot, time.id)} key={time.id} className={`${time.isActive ? 'isActive' : 'notActive'} timeContainer col-5 mb-2`}>
+                        displayedTimeSlots.map(time => (
+                            <div onClick={() => handleTimeClick(time.timeSlot, time.id)} key={time.id} className={`${time.isActive ? 'isActive' : 'notActive'} ${time.hasAvailable ? 'available' : 'notAvailable'} timeContainer col-5 mb-2`}>
                                 <p>{time.timeSlot}</p>
                             </div>
                         ))
@@ -129,14 +145,14 @@ class TimeSelector extends React.Component {
         );
 
     }
-    // } = ({serviceDuration, didSelectService, selectedTime, setSelectedTime, setDidSelectTime}) => {
 
 }
 
 const mapStateToProps = (state) => ({
     serviceDuration: state.booking.serviceDuration,
     didSelectService: state.booking.didSelectService,
-    selectedTime: state.booking.selectedTime
+    selectedTime: state.booking.selectedTime,
+    timeSlots: state.booking.timeSlots
 });
 
 const mapDispatchToProps = (dispatch) => ({
