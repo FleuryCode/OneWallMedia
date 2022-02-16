@@ -1,0 +1,28 @@
+.homeContainer {
+    width: 100%;
+
+    .main-button {
+        width: 100%;
+        height: 56px;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2%;
+        color: rgb(61, 61, 61);
+        cursor: pointer;
+        transition: background-color 0.5s, color 0.3s;
+
+        h4 {
+            margin: 0;
+            font-size: 130%;
+        }
+
+        &:hover {
+            background-color: #6D956F;
+            color: rgb(235, 235, 235);
+        }
+    }
+}

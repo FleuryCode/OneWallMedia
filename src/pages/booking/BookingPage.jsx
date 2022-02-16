@@ -1,5 +1,6 @@
 import React from "react";
 import Calendar from "../../components/Calendar/Calendar.component";
+import CustomButton from '../../components/CustomButton/CustomButton.component';
 import './BookingPage.styles.scss';
 import { format, toDate } from 'date-fns';
 import { ServiceList } from "./ServiceList";
@@ -33,7 +34,7 @@ class BookingPage extends React.Component {
             }
         }
         return (
-            <div className="bookingContainer container-fluid">
+            <div className="bookingContainer container-fluid mb-3">
                 <div className="row">
                     <div className="col-12">
                         <h1>Schedule an Appointment</h1>
@@ -83,9 +84,12 @@ class BookingPage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-4">
-                        <button>Test Submit Button</button>
+                <div className="row d-flex justify-content-center mt-3">
+                    <div className="col-5 col-lg-3">
+                        <CustomButton
+                        page="booking"
+                        text="BOOK APPOINTMENT"
+                        />
                     </div>
                 </div>
             </div>

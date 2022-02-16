@@ -497,9 +497,6 @@ class Calendar extends React.Component {
                         ))}
                     </div>
                 </div>
-                <div className="row">
-                    <button onClick={this.generateMonthEventList} >Generate List Test Button</button>
-                </div>
             </div>
         );
     }

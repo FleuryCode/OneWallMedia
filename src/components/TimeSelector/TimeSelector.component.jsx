@@ -107,18 +107,10 @@ class TimeSelector extends React.Component {
             for (let i = 0; i < timeSlots.length; i++) {
                 displayedTimeSlots[i].hasAvailable = timeSlots[i].hasAvailable;
             }
-            console.log(displayedTimeSlots);
-
         }
-
-
-
         if (this.state.activeId !== null) {
             displayedTimeSlots[this.state.activeId - 1].isActive = true;
         }
-
-
-
         const handleTimeClick = (time, id) => {
             if (displayedTimeSlots[id - 1].hasAvailable) {
                 setSelectedTime(time);
@@ -127,7 +119,7 @@ class TimeSelector extends React.Component {
                     isActive: true,
                     activeId: id
                 });
-            }else {
+            } else {
                 console.log('Pick an available time');
             }
 
