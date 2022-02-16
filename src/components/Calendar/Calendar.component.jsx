@@ -25,7 +25,8 @@ class Calendar extends React.Component {
             isDateActive: null,
             activeDateId: '',
 
-            rawMonthEventList: []
+            rawMonthEventList: [],
+            filteredList: []
         }
     }
     generateRawEventList = async () => {
@@ -46,6 +47,7 @@ class Calendar extends React.Component {
         this.generateRawEventList();
 
 
+
     }
 
     render() {
@@ -55,7 +57,6 @@ class Calendar extends React.Component {
         // console.log(dateTest);
 
         // Grabbing Information
-        console.log('RAW LIST', this.state.rawMonthEventList);
         let monthEventList = [];
         const displayedYearMonth = format(new Date(this.state.displayedDate), "yyyy-MM");
         const { rawMonthEventList } = this.state
@@ -87,7 +88,7 @@ class Calendar extends React.Component {
             }
         }
 
-        console.log('Filtered', monthEventList);
+        
 
 
 
@@ -177,7 +178,7 @@ class Calendar extends React.Component {
                     hasAvailable: true
                 }
             ];
-            const date = format(new Date(this.state.displayedDate), "yyyy-MM-") + (i);
+            const date = format(new Date(format(new Date(this.state.displayedDate), "yyyy-MM-") + (i)), 'yyyy-MM-dd');
             for (let d = 0; d < monthEventList.length; d++) {
                 const currentDate = monthEventList[d].startDate;
                 if (currentDate === date) {
@@ -189,32 +190,32 @@ class Calendar extends React.Component {
                     if (eventStart < 8) {
                         switch (true) {
                             case eventEnd <= 8:
-                                console.log('Does not Effect');
+                                // console.log('Does not Effect');
                                 break;
                             case eventEnd <= 10:
-                                console.log('1st block booked');
+                                // console.log('1st block booked');
                                 timeSlots[0].hasAvailable = false;
                                 break
                             case eventEnd <= 12:
-                                console.log('1st, 2nd block booked');
+                                // console.log('1st, 2nd block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 break
                             case eventEnd <= 14:
-                                console.log('1st, 2nd, 3rd block booked');
+                                // console.log('1st, 2nd, 3rd block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 break
                             case eventEnd <= 16:
-                                console.log('1st, 2nd, 3rd, 4th block booked');
+                                // console.log('1st, 2nd, 3rd, 4th block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
                                 break;
                             case eventEnd <= 18:
-                                console.log('1st, 2nd, 3rd, 4th, 5th block booked');
+                                // console.log('1st, 2nd, 3rd, 4th, 5th block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
@@ -222,7 +223,7 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 break;
                             case eventEnd > 18:
-                                console.log('All blocks booked');
+                                // console.log('All blocks booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
@@ -235,29 +236,29 @@ class Calendar extends React.Component {
                         //Range 9 to 9.9
                         switch (true) {
                             case eventEnd <= 10:
-                                console.log('1st block booked');
+                                // console.log('1st block booked');
                                 timeSlots[0].hasAvailable = false;
                                 break;
                             case eventEnd <= 12:
-                                console.log('1st, 2nd block booked');
+                                // console.log('1st, 2nd block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 break;
-                            case eventEnd <= 14:
-                                console.log('1st, 2nd, 3rd block booked');
+                            // case eventEnd <= 14:
+                                // console.log('1st, 2nd, 3rd block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 break;
                             case eventEnd <= 16:
-                                console.log('1st, 2nd, 3rd, 4th block booked');
+                                // console.log('1st, 2nd, 3rd, 4th block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
                                 break;
                             case eventEnd <= 18:
-                                console.log('1st, 2nd, 3rd, 4th, 5th block booked');
+                                // console.log('1st, 2nd, 3rd, 4th, 5th block booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
@@ -265,7 +266,7 @@ class Calendar extends React.Component {
                                 timeSlots[4].hasAvailable = false;
                                 break;
                             case eventEnd > 18:
-                                console.log('All blocks booked');
+                                // console.log('All blocks booked');
                                 timeSlots[0].hasAvailable = false;
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
@@ -279,29 +280,29 @@ class Calendar extends React.Component {
                         //First block no longer available
                         switch (true) {
                             case eventEnd <= 12:
-                                console.log('2nd block booked');
+                                // console.log('2nd block booked');
                                 timeSlots[1].hasAvailable = false;
                                 break;
                             case eventEnd <= 14:
-                                console.log('2nd, 3rd block booked');
+                                // console.log('2nd, 3rd block booked');
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 break;
                             case eventEnd <= 16:
-                                console.log('2nd, 3rd, 4th block booked');
+                                // console.log('2nd, 3rd, 4th block booked');
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
                                 break;
                             case eventEnd <= 18:
-                                console.log('2nd, 3rd, 4th, 5th block booked');
+                                // console.log('2nd, 3rd, 4th, 5th block booked');
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
                                 timeSlots[4].hasAvailable = false;
                                 break;
                             case eventEnd > 18:
-                                console.log('2nd, 3rd, 4th, 5th, 6th blocks booked');
+                                // console.log('2nd, 3rd, 4th, 5th, 6th blocks booked');
                                 timeSlots[1].hasAvailable = false;
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
@@ -314,22 +315,22 @@ class Calendar extends React.Component {
                         // 1st and 2nd block no longer available
                         switch (true) {
                             case eventEnd <= 14:
-                                console.log('3rd block booked');
+                                // console.log('3rd block booked');
                                 timeSlots[2].hasAvailable = false;
                                 break;
                             case eventEnd <= 16:
-                                console.log('3rd, 4th block booked');
+                                // console.log('3rd, 4th block booked');
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
                                 break;
                             case eventEnd <= 18:
-                                console.log('3rd, 4th, 5th block booked');
+                                // console.log('3rd, 4th, 5th block booked');
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
                                 timeSlots[4].hasAvailable = false;
                                 break;
                             case eventEnd > 18:
-                                console.log('3rd, 4th, 5th, 6th block booked');
+                                // console.log('3rd, 4th, 5th, 6th block booked');
                                 timeSlots[2].hasAvailable = false;
                                 timeSlots[3].hasAvailable = false;
                                 timeSlots[4].hasAvailable = false;
@@ -341,16 +342,16 @@ class Calendar extends React.Component {
                         // 1st, 2nd, 3rd block no longer available
                         switch (true) {
                             case eventEnd <= 16:
-                                console.log('4th block booked');
+                                // console.log('4th block booked');
                                 timeSlots[3].hasAvailable = false;
                                 break;
                             case eventEnd <= 18:
-                                console.log('4th, 5th block booked');
+                                // console.log('4th, 5th block booked');
                                 timeSlots[3].hasAvailable = false;
                                 timeSlots[4].hasAvailable = false;
                                 break;
                             case eventEnd > 18:
-                                console.log('4th, 5th, 6th block booked');
+                                // console.log('4th, 5th, 6th block booked');
                                 timeSlots[3].hasAvailable = false;
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
@@ -361,11 +362,11 @@ class Calendar extends React.Component {
                         // 1st, 2nd, 3rd, 4th block no longer available
                         switch (true) {
                             case eventEnd <= 18:
-                                console.log('5th block booked');
+                                // console.log('5th block booked');
                                 timeSlots[4].hasAvailable = false;
                                 break;
                             case eventEnd > 18:
-                                console.log('5th, 6th block booked');
+                                // console.log('5th, 6th block booked');
                                 timeSlots[4].hasAvailable = false;
                                 timeSlots[5].hasAvailable = false;
                                 break;
@@ -375,12 +376,12 @@ class Calendar extends React.Component {
                         // All but 6th block unavailable
                         switch (true) {
                             case eventEnd > 18:
-                                console.log('6th block booked');
+                                // console.log('6th block booked');
                                 timeSlots[5].hasAvailable = false;
                                 break;
                         }
                     } else if (eventStart >= 20) {
-                        console.log('Does not effect anything');
+                        // console.log('Does not effect anything');
                     }
                 }
             }
@@ -424,6 +425,7 @@ class Calendar extends React.Component {
                 days[i].isActive = this.state.isDateActive;
             }
         }
+
 
         return (
             <div className="calendarContainer container-fluid" >
