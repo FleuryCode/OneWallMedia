@@ -25,10 +25,10 @@ const Footer = () => {
                         <Link className="footer-link" to={'/about'}>About</Link>
                     </div>
                     <div className="social">
-                        <a className="image-container" target={'_blank'} href="https://www.instagram.com/onewallmedia">
+                        <a className="image-container" target={'_blank'} rel="noreferrer" href="https://www.instagram.com/onewallmedia">
                             <img src={instagramLogo} alt="Instagram logo" />
                         </a>
-                        <a className="image-container" target={'_blank'} href="https://www.facebook.com/onewallmedia">
+                        <a className="image-container" target={'_blank'} rel="noreferrer" href="https://www.facebook.com/onewallmedia">
                             <img src={facebookLogo} alt="Facebook logo" />
                         </a>
                     </div>
@@ -41,7 +41,7 @@ const Footer = () => {
             </div>
             <div className="row mt-3">
                 <div className="col-12 service-terms">
-                    <a href="#">
+                    <a href="/#">
                         <p>TERMS OF SERVICE</p>
                     </a>
                 </div>
