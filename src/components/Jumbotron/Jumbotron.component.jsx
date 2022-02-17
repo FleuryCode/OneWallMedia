@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './Jumbotron.styles.scss';
+import { Link } from "react-router-dom";
 import { useSwipeable } from 'react-swipeable';
 
-export const JumbotronItem = ({ children, width, image }) => {
+export const JumbotronItem = ({ image, altText, heroText, subHeroText, link }) => {
     return (
-        <div className="jumbotron-item">
-            <img src={image} alt="" />
-        </div>
+        <Link to={`/${link}`} className="link">
+            <div className="jumbotron-item" style={{backgroundImage: `url(${image})`}} >
+                <h1 className='hero-text'>{heroText}</h1>
+                <h3 className='sub-hero-text'>{subHeroText}</h3>
+            </div>
+        </Link>
+
     );
 }
 
@@ -30,7 +35,7 @@ const Jumbotron = ({ children }) => {
                 updateIndex(activeIndex + 1);
             }
 
-        }, 4000);
+        }, 30000);
 
         return () => {
             if (interval) {

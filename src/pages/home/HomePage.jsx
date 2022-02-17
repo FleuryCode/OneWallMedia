@@ -12,7 +12,7 @@ class HomePage extends React.Component {
         return (
             <div className='homeContainer container-fluid p-0'>
                 <div className="row d-flex justify-content-center m-0">
-                    <div className="col-5 col-md-3">
+                    <div className="col-12 col-sm-4 col-md-3 col-lg-2 mt-4">
                         <Link to={"/booking"} className="main-button">
                             <h4>BOOK NOW</h4>
                         </Link>
@@ -21,9 +21,9 @@ class HomePage extends React.Component {
                 <div className="row m-0">
                     <div className="col-12 p-0">
                         <Jumbotron>
-                            <JumbotronItem image={testImageOne} />
-                            <JumbotronItem image={testImageTwo} />
-                            <JumbotronItem image={testImageThree} />
+                            <JumbotronItem image={testImageOne} link="booking" heroText="Real Estate Photography" subHeroText="This is the sub hero text" />
+                            <JumbotronItem image={testImageTwo} link="booking" heroText="Real Estate Photography" subHeroText="This is the sub hero text" />
+                            <JumbotronItem image={testImageThree} link="booking" heroText="Real Estate Photography" subHeroText="This is the sub hero text" />
                         </Jumbotron>
                     </div>
                 </div>

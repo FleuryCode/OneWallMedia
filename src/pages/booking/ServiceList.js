@@ -10,7 +10,7 @@ export const ServiceList = [
         timeBracket: 'short'
     },
     {
-        service: 'Drone Photography',
+        service: 'Drone Photography / Videography',
         id: 3,
         timeBracket: 'short'
     },
@@ -25,8 +25,23 @@ export const ServiceList = [
         timeBracket: 'short'
     },
     {
-        service: 'Property Videos',
+        service: 'Real Estate Videos',
         id: 6,
         timeBracket: 'long'
+    },
+    {
+        service: 'Portrait & Headshots',
+        id: 7,
+        timeBracket: 'short'
+    },
+    {
+        service: 'Live Events',
+        id: 8,
+        timeBracket: 'long'
+    },
+    {
+        service: 'Product Photography',
+        id: 9,
+        timeBracket: 'short'
     }
 ];
