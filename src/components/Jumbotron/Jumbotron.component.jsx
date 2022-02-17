@@ -35,7 +35,7 @@ const Jumbotron = ({ children }) => {
                 updateIndex(activeIndex + 1);
             }
 
-        }, 30000);
+        }, 3000);
 
         return () => {
             if (interval) {

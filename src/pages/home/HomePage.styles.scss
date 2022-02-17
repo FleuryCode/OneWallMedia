@@ -30,4 +30,24 @@
             color: rgb(235, 235, 235);
         }
     }
+
+    .divider {
+        width: 80%;
+        height: 1px;
+        margin: 2% 0;
+        background-color: rgb(88, 88, 88);
+    }
+
+    .info-text {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        p {
+            width: 70%;
+            font-size: 140%;
+            margin-top: 1%;
+        }
+    }
+
 }
