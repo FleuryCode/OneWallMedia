@@ -5,7 +5,7 @@ import logo from '../../logo.svg';
 
 const Navigation = () => {
     return (
-        <nav className="mainNavigation pt-3">
+        <nav className="mainNavigation pt-3 m-0">
             <div className="container-fluid m-0 p-0">
                 <div className="row d-flex justify-content-center m-0 p-0">
                     <div className="col-5 navList justify-content-end">

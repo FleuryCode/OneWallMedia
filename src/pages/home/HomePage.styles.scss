@@ -1,6 +1,10 @@
 .homeContainer {
     width: 100%;
 
+    .row {
+        width: 100%;
+    }
+
     .main-button {
         width: 100%;
         height: 56px;
@@ -13,6 +17,7 @@
         padding: 2%;
         color: rgb(61, 61, 61);
         cursor: pointer;
+        text-decoration: none;
         transition: background-color 0.5s, color 0.3s;
 
         h4 {

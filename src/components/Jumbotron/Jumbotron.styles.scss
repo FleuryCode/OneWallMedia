@@ -1,0 +1,48 @@
+.jumbotronContainer {
+    overflow: hidden;
+
+    .inner {
+        white-space: nowrap;
+        transition: transform 0.7s;
+    }
+
+    .indicators {
+        display: flex;
+        position: relative;
+        margin-top: -60px;
+        margin-bottom: 40px;
+        justify-content: center;
+
+        button {
+            margin: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: rgb(180, 180, 180);
+            border-radius: 50%;
+            border: 0;
+            box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+            &.active {
+                background-color: #6D956F;
+                color: white;
+            }
+        }
+    }
+}
+
+.jumbotron-item {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    background-color: green;
+    color: white;
+    object-fit: cover;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
