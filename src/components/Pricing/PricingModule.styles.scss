@@ -1,0 +1,46 @@
+.pricingModuleContainer {
+    width: 96%;
+    height: 360px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.3);
+
+    .row {
+        --bs-gutter-x: 0;
+      }
+
+    .name-container {
+        height: 80px;
+        display: flex;
+        align-items: center;
+    }
+
+    .divider {
+        height: 1px;
+        width: 70%;
+        background-color: rgb(141, 141, 141);
+    }
+
+    .services-container {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        p {
+            text-align: start;
+            font-size: 90%;
+            margin-bottom: 1.5%;
+        }
+    }
+
+    .price-container {
+        margin-top: auto;
+        display: flex;
+        justify-content: center;
+        h2 {
+            color: #6D956F;
+            text-align: center;
+        }
+    }
+}
