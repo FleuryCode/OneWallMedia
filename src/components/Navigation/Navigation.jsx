@@ -9,9 +9,9 @@ const Navigation = () => {
             <div className="container-fluid m-0 p-0">
                 <div className="row d-flex justify-content-center m-0 p-0">
                     <div className="col-5 navList justify-content-end">
-                        <Link className="nav-item ms-5" to={'/#'} >Services</Link>
-                        <Link className="nav-item ms-5" to={'/#'} >Pricing</Link>
-                        <Link className="nav-item ms-5" to={'/#'} >About</Link>
+                        <Link className="nav-item ms-5" to={'/services'} >Services</Link>
+                        <Link className="nav-item ms-5" to={'/pricing'} >Pricing</Link>
+                        <Link className="nav-item ms-5" to={'/about'} >About</Link>
                     </div>
                     <div className="col-1">
                         <Link className="logoContainer" to={'/#'} >
@@ -19,7 +19,7 @@ const Navigation = () => {
                         </Link>
                     </div>
                     <div className="col-5 navList justify-content-start">
-                        <Link className="nav-item me-5" to={'/#'} >Portfolio</Link>
+                        <Link className="nav-item me-5" to={'/services'} >Portfolio</Link>
                         <Link className="nav-item me-5" to={'/booking'} >Booking</Link>
                         <Link className="nav-item me-5" to={'/contact'} >Contact</Link>
                     </div>

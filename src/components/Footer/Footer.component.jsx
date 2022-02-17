@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <div className="footerContainer container-fluid">
             <div className="row">
-                <div className="col-12 mt-3 d-flex flex-column align-items-center">
+                <div className="col-12 mt-4 d-flex flex-column align-items-center">
                     <h4>SCHEDULE YOUR APPOINTMENT</h4>
                     <Link className="footer-button mt-2" to={'/booking'}>
                         <CustomButton text={'START NOW'} page='footer' />

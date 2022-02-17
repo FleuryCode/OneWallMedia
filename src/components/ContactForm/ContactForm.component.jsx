@@ -124,7 +124,7 @@ class ContactForm extends React.Component {
             <div className="contactFormContainer container-fluid">
                 <form>
                     <div className="row">
-                        <div className="col-12 col-md-6 px-4 mt-4">
+                        <div className="col-12 col-md-6 px-4 mt-5">
                             <CustomInput
                                 handleChange={this.handleChange}
                                 type='text'
@@ -134,7 +134,7 @@ class ContactForm extends React.Component {
                                 value={this.state.firstName}
                             />
                         </div>
-                        <div className="col-12 col-md-6 px-4 mt-4">
+                        <div className="col-12 col-md-6 px-4 mt-5">
                             <CustomInput
                                 handleChange={this.handleChange}
                                 type='text'
@@ -144,7 +144,7 @@ class ContactForm extends React.Component {
                                 value={this.state.lastName}
                             />
                         </div>
-                        <div className="col-12 col-md-8 px-4 mt-4">
+                        <div className="col-12 col-md-8 px-4 mt-5">
                             <CustomInput
                                 handleChange={this.handleChange}
                                 type='email'
@@ -154,7 +154,7 @@ class ContactForm extends React.Component {
                                 value={this.state.email}
                             />
                         </div>
-                        <div className="col-12 col-md-4 px-4 mt-4">
+                        <div className="col-12 col-md-4 px-4 mt-5">
                             <CustomInput
                                 handleChange={this.handleChange}
                                 type='tel'
@@ -164,7 +164,7 @@ class ContactForm extends React.Component {
                                 value={this.state.phone}
                             />
                         </div>
-                        <div className="col-12 px-4 mt-4">
+                        <div className="col-12 px-4 mt-5">
                             <CustomTextArea
                                 handleChange={this.handleChange}
                                 id='message'
@@ -174,7 +174,7 @@ class ContactForm extends React.Component {
                             />
                         </div>
                         <div className="row">
-                            <div className="col-12 col-md-2 px-4 mt-4">
+                            <div className="col-12 col-md-2 px-4 mt-5">
                                 <ReCAPTCHA
                                     ref={recaptchaRef}
                                     sitekey={recaptchaKey}

@@ -3,13 +3,13 @@ import Calendar from "../../components/Calendar/Calendar.component";
 import CustomButton from '../../components/CustomButton/CustomButton.component';
 import './BookingPage.styles.scss';
 import { format, toDate } from 'date-fns';
-import { ServiceList } from "./ServiceList";
-
+import { ServiceList } from "../../ServiceList";
 import { connect } from "react-redux";
 import CustomDropDown from "../../components/CustomDropDown/CustomDropDown.component";
 import TimeSelector from "../../components/TimeSelector/TimeSelector.component";
 import CustomInput from '../../components/CustomInput/CustomInput.component';
 import { setName, setEmail, setPhone } from '../../redux/booking-info/booking.actions';
+import Footer from "../../components/Footer/Footer.component";
 
 class BookingPage extends React.Component {
 
@@ -34,9 +34,9 @@ class BookingPage extends React.Component {
             }
         }
         return (
-            <div className="bookingContainer container-fluid mb-3">
+            <div className="bookingContainer container-fluid p-0">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 p-0">
                         <h1>Schedule an Appointment</h1>
                     </div>
                 </div>
@@ -44,7 +44,7 @@ class BookingPage extends React.Component {
                     <div className="col-11 col-md-7 d-flex justify-content-center my-4 px-5 px-md-4">
                         <Calendar date={date} month={month} />
                     </div>
-                    <div className="col-12 col-md-5 d-flex justify-content-center mt-4 mb-auto">
+                    <div className="col-12 col-md-5 d-flex justify-content-center mt-4 mb-auto p-0">
                         <div className={`${didSelectDay ? 'display' : 'noDisplay'} mt-0 mt-md-5`}>
                             <h5 className="displayed-date">{format(new Date(toDate(new Date(selectedDay))), "PPP")}</h5>
                             <CustomDropDown serviceList={ServiceList} />
@@ -84,12 +84,17 @@ class BookingPage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="row d-flex justify-content-center mt-3">
+                <div className="row d-flex justify-content-center mt-3 mb-5 p-0">
                     <div className="col-5 col-lg-3">
                         <CustomButton
                         page="booking"
                         text="BOOK APPOINTMENT"
                         />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 mt-5">
+                        <Footer/>
                     </div>
                 </div>
             </div>

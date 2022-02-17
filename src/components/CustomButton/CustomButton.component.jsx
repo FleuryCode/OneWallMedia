@@ -3,7 +3,7 @@ import './CustomButton.styles.scss';
 
 const CustomButton = ({handleClick, page, text, messageSending, ...otherProps}) => {
     return(
-        <div onClick={handleClick} className={`${page} buttonContainer`} {...otherProps}>
+        <div onClick={handleClick} className={`${page} buttonContainer ms-auto me-auto`} {...otherProps}>
             {messageSending ? 'SENDING...' : text}
         </div>
     );

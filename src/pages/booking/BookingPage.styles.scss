@@ -23,3 +23,10 @@
 .input-fields {
     width: 100%;
 }
+
+.bookingContainer {
+
+    .row {
+        --bs-gutter-x: 0;
+      }
+}
