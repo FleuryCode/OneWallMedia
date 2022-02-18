@@ -38,20 +38,20 @@ class BookingPage extends React.Component {
 
 
         // Testing Aryeo
-        const aryeoOptions = {
-            method: 'GET',
-            url: 'https://api.aryeo.com/v1/appointments',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${KEYS.ARYEO_API_KEY}`
-            }
-        }
+        // const aryeoOptions = {
+        //     method: 'GET',
+        //     url: 'https://api.aryeo.com/v1/appointments',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: `Bearer ${KEYS.ARYEO_API_KEY}`
+        //     }
+        // }
 
-        axios.request(aryeoOptions).then(function (response) {
-            console.log(response.data);
-          }).catch(function (error) {
-            console.error(error);
-          });
+        // axios.request(aryeoOptions).then(function (response) {
+        //     console.log(response.data);
+        //   }).catch(function (error) {
+        //     console.error(error);
+        //   });
         return (
             <div className="bookingContainer container-fluid p-0">
                 <div className="row">

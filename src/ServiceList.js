@@ -1,3 +1,5 @@
+const testImageOne = require('./assets/testImageOne.jpg');
+
 export const ServiceList = [
     {
         service: 'Real Estate Photography',
@@ -7,7 +9,9 @@ export const ServiceList = [
             'Professional real estate photography',
             'Branded and unbranded property websites'
         ],
-        timeBracket: 'short' //Maybe another way?
+        timeBracket: 'short', //Maybe another way?
+        mainImageUrl: `url(${testImageOne})`,
+        linkAddress: '/real-estate'
     },
     {
         service: 'Twilight Photography',
@@ -17,7 +21,8 @@ export const ServiceList = [
             'Replace this',
             'Replace this too'
         ],
-        timeBracket: 'short'
+        timeBracket: 'short',
+        mainImageUrl: `url(${testImageOne})`
     },
     {
         service: 'Drone Photography',
@@ -27,7 +32,8 @@ export const ServiceList = [
             'Up to 20 professional aerial drone photos',
             'You can order drone photography at a discounted rate when selecting another base service'
         ],
-        timeBracket: 'short'
+        timeBracket: 'short',
+        mainImageUrl: `url(${testImageOne})`
     },
     {
         service: '360 Matterport Tours',
@@ -37,7 +43,8 @@ export const ServiceList = [
             '360 Matterport tour',
             'Branded and unbranded property websites'
         ],
-        timeBracket: 'long'
+        timeBracket: 'long',
+        mainImageUrl: `url(${testImageOne})`
     },
     {
         service: 'Virtual Staging',
@@ -47,7 +54,8 @@ export const ServiceList = [
             'Replace this',
             'Replace this too'
         ],
-        timeBracket: 'short'
+        timeBracket: 'short',
+        mainImageUrl: `url(${testImageOne})`
     },
     {
         service: 'Real Estate Videos',
@@ -58,7 +66,8 @@ export const ServiceList = [
             "Don't just sell the home, sell the lifestyle",
             'Drone video included'
         ],
-        timeBracket: 'long'
+        timeBracket: 'long',
+        mainImageUrl: `url(${testImageOne})`
     },
     {
         service: 'Portrait & Headshots',
@@ -68,7 +77,8 @@ export const ServiceList = [
             'Replace this',
             'Replace this too'
         ],
-        timeBracket: 'short'
+        timeBracket: 'short',
+        mainImageUrl: `url(${testImageOne})`
     },
     {
         service: 'Live Events',
@@ -78,7 +88,8 @@ export const ServiceList = [
             'Replace this',
             'Replace this too'
         ],
-        timeBracket: 'long'
+        timeBracket: 'long',
+        mainImageUrl: `url(${testImageOne})`
     },
     {
         service: 'Product Photography',
@@ -88,6 +99,7 @@ export const ServiceList = [
             'Replace this',
             'Replace this too'
         ],
-        timeBracket: 'short'
+        timeBracket: 'short',
+        mainImageUrl: `url(${testImageOne})`
     }
 ];
