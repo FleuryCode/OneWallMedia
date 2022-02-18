@@ -10,6 +10,8 @@ import TimeSelector from "../../components/TimeSelector/TimeSelector.component";
 import CustomInput from '../../components/CustomInput/CustomInput.component';
 import { setName, setEmail, setPhone } from '../../redux/booking-info/booking.actions';
 import Footer from "../../components/Footer/Footer.component";
+import { KEYS } from "../../Keys";
+import axios from "axios";
 
 class BookingPage extends React.Component {
 
@@ -33,6 +35,23 @@ class BookingPage extends React.Component {
                 setPhone(value);
             }
         }
+
+
+        // Testing Aryeo
+        const aryeoOptions = {
+            method: 'GET',
+            url: 'https://api.aryeo.com/v1/appointments',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${KEYS.ARYEO_API_KEY}`
+            }
+        }
+
+        axios.request(aryeoOptions).then(function (response) {
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
         return (
             <div className="bookingContainer container-fluid p-0">
                 <div className="row">
@@ -84,8 +103,8 @@ class BookingPage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="row d-flex justify-content-center mt-3 mb-5 p-0">
-                    <div className="col-5 col-lg-3">
+                <div className="row d-flex justify-content-center mt-5 mb-5 p-0">
+                    <div className="col-5 col-lg-3 mt-3">
                         <CustomButton
                         page="booking"
                         text="BOOK APPOINTMENT"
