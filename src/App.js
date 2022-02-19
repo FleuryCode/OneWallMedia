@@ -7,6 +7,7 @@ import PricingPage from './pages/pricing/PricingPage';
 import AboutPage from './pages/about/AboutPage';
 import BookingPage from './pages/booking/BookingPage';
 import ContactPage from './pages/contact/ContactPage';
+import ServiceSpecific from './pages/services/ServiceSpecific/ServiceSpecific';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route exact path={'/about'} element={<AboutPage />} />
         <Route exact path={'/booking'} element={<BookingPage />} />
         <Route exact path={'/contact'} element={<ContactPage />} />
+        <Route exact path={'/services/real-estate-photography'} element={<ServiceSpecific />} />
       </Routes>
     </div>
   );
