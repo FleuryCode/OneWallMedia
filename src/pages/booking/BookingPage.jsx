@@ -52,6 +52,9 @@ class BookingPage extends React.Component {
         //   }).catch(function (error) {
         //     console.error(error);
         //   });
+
+
+      
         return (
             <div className="bookingContainer container-fluid p-0">
                 <div className="row">
