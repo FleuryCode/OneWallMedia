@@ -6,4 +6,12 @@ function importAll(r) {
    }
 export const RealEstatePhotos =  importAll(require.context('./assets/portfolios/real-estate-photography', false, /\.(png|jpe?g|svg)$/));
 
+export const RealEstatePhotos =  importAll(require.context('./assets/portfolios/twilight-photography', false, /\.(png|jpe?g|svg)$/));
+
+export const RealEstatePhotos =  importAll(require.context('./assets/portfolios/real-estate-photography', false, /\.(png|jpe?g|svg)$/));
+
+export const RealEstatePhotos =  importAll(require.context('./assets/portfolios/real-estate-photography', false, /\.(png|jpe?g|svg)$/));
+
+export const RealEstatePhotos =  importAll(require.context('./assets/portfolios/real-estate-photography', false, /\.(png|jpe?g|svg)$/));
+
 
