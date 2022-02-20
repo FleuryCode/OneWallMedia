@@ -2,7 +2,7 @@ import React from "react";
 import './ServiceSpecific.styles.scss';
 import { useParams } from "react-router-dom";
 import { ServiceList } from "../../../ServiceList";
-import { RealEstatePhotos } from "../../../PortfolioImages";
+import { RealEstatePhotos, TwilightPhotos, DronePhotos, MatterportPhotos, VirtualStagingPhotos, PortraitPhotos, EventPhotos, ProductPhotos } from "../../../PortfolioImages";
 
 const ServiceSpecific = () => {
 
@@ -29,10 +29,34 @@ const ServiceSpecific = () => {
     }
 
     let images = [];
-    let keys = Object.keys(RealEstatePhotos);
+    let mainKey = RealEstatePhotos;
+    switch (params.serviceLink) {
+        case 'real-estate-photography':
+            mainKey = RealEstatePhotos;
+            break;
+        case 'twilight-photography':
+            mainKey = TwilightPhotos;
+        case 'drone-photography':
+            mainKey = DronePhotos;
+        case '360-matterport':
+            mainKey = MatterportPhotos;
+        case 'virtual-staging':
+            mainKey = VirtualStagingPhotos;
+        case 'portraits':
+            mainKey = PortraitPhotos;
+        case 'live-events':
+            mainKey = EventPhotos;
+        case 'product-photography':
+            mainKey = ProductPhotos;
+        default:
+            break;
+    }
+
+    let keys = Object.keys(mainKey);
     keys.forEach((key, index) => {
-        images.push(RealEstatePhotos[key]);
+        images.push(mainKey[key]);
     });
+
 
     // HOW TO DO THIS JUST FOR IMAGE PORTFOLIOS
     // const test5 = false;
