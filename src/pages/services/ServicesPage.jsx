@@ -16,7 +16,7 @@ class ServicesPage extends React.Component {
                     {
                         ServiceList.map(service => (
                             <div key={service.id} className="col-12 col-md-6 col-lg-4 p-4">
-                                <ServiceModule serviceName={service.service} imageUrl={service.mainImageUrl} />
+                                <ServiceModule serviceName={service.service} imageUrl={service.mainImageUrl} link={service.linkAddress} />
                             </div>
                         ))
                     }

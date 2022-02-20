@@ -17,11 +17,11 @@ function App() {
       <Routes>
         <Route exact path={'/'} element={<HomePage />} />
         <Route exact path={'/services'} element={<ServicesPage />} />
+        <Route exact path={'/services/:serviceLink'} element={<ServiceSpecific />} />
         <Route exact path={'/pricing'} element={<PricingPage />} />
         <Route exact path={'/about'} element={<AboutPage />} />
         <Route exact path={'/booking'} element={<BookingPage />} />
         <Route exact path={'/contact'} element={<ContactPage />} />
-        <Route exact path={'/services/real-estate-photography'} element={<ServiceSpecific />} />
       </Routes>
     </div>
   );
