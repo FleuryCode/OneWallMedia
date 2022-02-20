@@ -1,4 +1,5 @@
 const testImageOne = require('./assets/testImageOne.jpg');
+const testImageTwo = require('./assets/testImageTwo.jpg');
 
 export const ServiceList = [
     {
@@ -31,10 +32,10 @@ export const ServiceList = [
         pricing: '$150',
         services: [
             'Up to 20 professional aerial drone photos',
-            'You can order drone photography at a discounted rate when selecting another base service'
+            'You can order drone photography at a discounted rate when selecting another base service',
         ],
         timeBracket: 'short',
-        mainImageUrl: `url(${testImageOne})`,
+        mainImageUrl: `url(${testImageTwo})`,
         linkAddress: 'drone-photography'
     },
     {

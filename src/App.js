@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className='App'>
-      <Navigation />
+      <Navigation className="navigation" />
       <Routes>
         <Route exact path={'/'} element={<HomePage />} />
         <Route exact path={'/services'} element={<ServicesPage />} />

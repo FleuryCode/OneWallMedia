@@ -8,7 +8,7 @@ class PricingPage extends React.Component {
         return (
             <div className="pricingContainer container-fluid p-0">
                 <div className="row">
-                    <div className="col-12 mt-3">
+                    <div className="col-12">
                         <h1>OUR PRICING</h1>
                     </div>
                 </div>

@@ -1,6 +1,42 @@
 .serviceSpecificContainer {
-
+    position: absolute;
+    top: 0;
     .serviceHeader {
-        
+        height: 30vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        .service-title {
+            margin-top: 24vh;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+    }
+
+    .serviceInfo{
+        background-image: linear-gradient(white, #e8ebeb);
+        .services-included-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 2% 20%;
+        }
+
+        h6 {
+            font-weight: 700;
+            font-size: 180%;
+        }
+
+        P {
+            text-align: start;
+            font-size: 110%;
+        }
+
+        .gallery {
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
     }
 }

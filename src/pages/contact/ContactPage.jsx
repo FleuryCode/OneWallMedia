@@ -8,7 +8,7 @@ class ContactPage extends React.Component {
         return(
             <div className="contactContainer container-fluid p-0">
                 <div className="row">
-                    <div className="col-12 mt-4">
+                    <div className="col-12">
                         <h1>We Would Love to Hear From You</h1>
                     </div>
                     <div className="col-12 mt-3 mt-5 p-4">

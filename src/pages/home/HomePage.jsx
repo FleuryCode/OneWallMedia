@@ -23,7 +23,7 @@ class HomePage extends React.Component {
         return (
             <div className='homeContainer container-fluid p-0'>
                 <div className="row d-flex justify-content-center m-0">
-                    <div className="col-12 col-sm-4 col-md-3 col-lg-2 mt-4">
+                    <div className="col-12 col-sm-4 col-md-3 col-lg-2">
                         <Link to={"/booking"} className="main-button">
                             <h4>BOOK NOW</h4>
                         </Link>
