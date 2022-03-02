@@ -36,18 +36,25 @@ const ServiceSpecific = () => {
             break;
         case 'twilight-photography':
             mainKey = TwilightPhotos;
+            break;
         case 'drone-photography':
             mainKey = DronePhotos;
+            break;
         case '360-matterport':
             mainKey = MatterportPhotos;
+            break;
         case 'virtual-staging':
             mainKey = VirtualStagingPhotos;
+            break;
         case 'portraits':
             mainKey = PortraitPhotos;
+            break;
         case 'live-events':
             mainKey = EventPhotos;
+            break;
         case 'product-photography':
             mainKey = ProductPhotos;
+            break;
         default:
             break;
     }

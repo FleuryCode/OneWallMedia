@@ -17,6 +17,6 @@ export const VirtualStagingPhotos =  importAll(require.context('./assets/portfol
 
 export const PortraitPhotos =  importAll(require.context('./assets/portfolios/portraits', false, /\.(png|jpe?g|svg)$/));
 
-export const EventPhotos =  importAll(require.context('./assets/portfolios/live-event', false, /\.(png|jpe?g|svg)$/));
+export const EventPhotos =  importAll(require.context('./assets/portfolios/live-events', false, /\.(png|jpe?g|svg)$/));
 
 export const ProductPhotos =  importAll(require.context('./assets/portfolios/product-photography', false, /\.(png|jpe?g|svg)$/));
