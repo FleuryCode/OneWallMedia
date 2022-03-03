@@ -8,8 +8,18 @@ import testImageTwo from '../../assets/testImageTwo.jpg';
 import testImageThree from '../../assets/testImageThree.jpg';
 import Footer from '../../components/Footer/Footer.component';
 
+// Firebase
+import { firestore } from '../../firebase/firebase.utils';
 
 class HomePage extends React.Component {
+    unsubscribeFromSnapshot = null;
+
+    componentDidMount() {
+        const textChangesRef = firestore.collection('TextChanges');
+        textChangesRef.onSnapshot(async snapshot => {
+            console.log(snapshot);
+        });
+    }
     render() {
         // Video Options
         const videoOpts = {
@@ -20,6 +30,7 @@ class HomePage extends React.Component {
                 modestbranding: 1,
             },
         };
+
         return (
             <div className='homeContainer container-fluid p-0'>
                 <div className="row d-flex justify-content-center m-0">
