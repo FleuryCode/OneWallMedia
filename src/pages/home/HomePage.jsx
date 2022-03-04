@@ -28,7 +28,7 @@ class HomePage extends React.Component {
             // Homepage
             const homePageData = docArray[0].data();
             this.setState({
-                heroBody: homePageData.HeroBody
+                heroBody: homePageData['Hero Body'] //MAKE THIS MORE DYNAMIC
             });
 
         });
