@@ -26,7 +26,7 @@ class HomePage extends React.Component {
             const docArray = snapshot.docs;
 
             // Homepage
-            const homePageData = docArray[0].data();
+            const homePageData = docArray[1].data(); //Make this dynamic too!
             this.setState({
                 heroBody: homePageData['Hero Body'] //MAKE THIS MORE DYNAMIC
             });
